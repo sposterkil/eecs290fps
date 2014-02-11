@@ -15,8 +15,16 @@ using System.Collections.Generic;
 public class GridCreator : MonoBehaviour {
 	
 	public Transform CellPrefab;
+	public Transform WallPrefab;
 	public Vector3 Size;
 	public Transform[,] Grid;
+	public Transform end;
+	public Transform player;
+
+	private Transform wall1;
+	private Transform wall2;
+	private Transform wall3;
+	private Transform wall4;
 
 	// Use this for initialization
 	void Start () {
@@ -25,6 +33,7 @@ public class GridCreator : MonoBehaviour {
 		SetAdjacents();
 		SetStart();
 		FindNext();
+		BuildWalls();
 	}
 
 	// Creates the grid by instantiating provided cell prefabs.
@@ -35,17 +44,17 @@ public class GridCreator : MonoBehaviour {
 		for (int x = 0; x < Size.x; x++) {
 			for (int z = 0; z < Size.z; z++) {
 				Transform newCell;
-				newCell = (Transform)Instantiate(CellPrefab, new Vector3(x, 0, z), Quaternion.identity);
+				newCell = (Transform)Instantiate(CellPrefab, new Vector3(6 * x, 0, 6 * z), Quaternion.identity);
 				newCell.name = string.Format("({0},0,{1})", x, z);
 				newCell.parent = transform;
-				newCell.GetComponent<CellScript>().Position = new Vector3(x, 0, z);
+				newCell.GetComponent<CellScript>().Position = new Vector3(6 * x, 0, 6 * z);
 				Grid[x,z] = newCell;
 			}
 		}
 		// Centers the camera on the maze.
 		// Feel free to adjust this as needed.
-		Camera.main.transform.position = Grid[(int)(Size.x / 2f),(int)(Size.z / 2f)].position + Vector3.up * 20f;
-		Camera.main.orthographicSize = Mathf.Max(Size.x * 0.55f, Size.z * 0.5f);
+		//Camera.main.transform.position = Grid[(int)(Size.x / 2f),(int)(Size.z / 2f)].position + Vector3.up * 100f;
+		//Camera.main.orthographicSize = Mathf.Max(Size.x * 0.55f, Size.z * 0.5f);
 	}
 
 	// Sets a random weight to each cell.
@@ -168,9 +177,10 @@ public class GridCreator : MonoBehaviour {
 
 			// The maze is complete.
 			if (isEmpty) { 
-				Debug.Log("Generation completed in " + Time.timeSinceLevelLoad + " seconds."); 
+				//Debug.Log("Generation completed in " + Time.timeSinceLevelLoad + " seconds."); 
 				CancelInvoke("FindNext");
-				PathCells[PathCells.Count - 1].renderer.material.color = Color.red;
+				end = PathCells[PathCells.Count - 1];
+				end.renderer.material.color = Color.red;
 				
 				foreach (Transform cell in Grid) {
 					// Removes displayed weight
@@ -179,6 +189,8 @@ public class GridCreator : MonoBehaviour {
 					if (!PathCells.Contains(cell)) {
 						// HINT: Try something here to make the maze 3D
 						cell.renderer.material.color = Color.black;
+						cell.localScale += new Vector3(0f, 5f, 0f);
+						cell.localPosition += new Vector3(0f, 3.5f, 0f);
 					}
 				}
 				return;
@@ -199,12 +211,51 @@ public class GridCreator : MonoBehaviour {
 		Invoke("FindNext", 0);
 	}
 
+	void BuildWalls() {
+		//Wall 1
+		wall1 = (Transform)Instantiate(WallPrefab, new Vector3(-4.5f, 3.5f, (Size.z / 2f) * 6f - 3f), Quaternion.identity);
+		wall1.name = string.Format("Wall");
+		wall1.localScale += new Vector3(2f, 5f, Size.z * 6f);
+		//Wall 2
+		wall2 = (Transform)Instantiate(WallPrefab, new Vector3(6f * Size.x - 1.5f, 3.5f, (Size.z / 2f) * 6f - 3f), Quaternion.identity);
+		wall2.name = string.Format("Wall");
+		wall2.localScale += new Vector3(2f, 5f, Size.z * 6f);
+
+
+
+		//Wall 3
+		wall3 = (Transform)Instantiate(WallPrefab, new Vector3((Size.x / 2f) * 6f - 3f, 3.5f, -4.5f), Quaternion.identity);
+		wall3.name = string.Format("Wall");
+		wall3.localScale += new Vector3(Size.x * 6f, 5f, 2f);
+		//Wall 4
+		wall4 = (Transform)Instantiate(WallPrefab, new Vector3((Size.x / 2f) * 6f - 3f, 3.5f, 6f * Size.z - 1.5f), Quaternion.identity);
+		wall4.name = string.Format("Wall");
+		wall4.localScale += new Vector3(Size.x * 6f, 5f, 2f);
+	}
+
 	// Called once per frame.
 	void Update() {
-
 		// Pressing 'F1' will generate a new maze.
 		if (Input.GetKeyDown(KeyCode.F1)) {
-			Application.LoadLevel(0);	
+			/*
+			player.localPosition = new Vector3(0f, 5f, 0f);
+			Size.Set(Size.x + 5f, Size.y, Size.z + 5f);
+			transform.Translate(new Vector3(0f, -20f, 0f));
+			Start();
+			*/
+		}
+		if ((player.localPosition.x >= end.localPosition.x - 2f)
+		 && (player.localPosition.x <= end.localPosition.x + 2f) 
+		 && (player.localPosition.z >= end.localPosition.z - 2f)
+		 && (player.localPosition.z <= end.localPosition.z + 2f)) {
+			wall1.Translate(new Vector3(0f, -20f, 0f));
+			wall2.Translate(new Vector3(0f, -20f, 0f));
+			wall3.Translate(new Vector3(0f, -20f, 0f));
+			wall4.Translate(new Vector3(0f, -20f, 0f));
+			player.localPosition = new Vector3(0f, 5f, 0f);
+			Size.Set(Size.x + 5f, Size.y, Size.z + 5f);
+			transform.Translate(new Vector3(0f, -20f, 0f));
+			Start();
 		}
 	}
 }

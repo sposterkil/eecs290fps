@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// http://www.fizixstudios.com/labs/do/view/id/unity-game-state-manager
+// http://blog.i-evaluation.com/2013/12/11/creating-game-manager-using-state-machine-and-singleton-pattern-in-unity3d/
+
+using UnityEngine;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {

@@ -1,4 +1,4 @@
-﻿using UnityEngine; 
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -8,12 +8,12 @@ using System.Collections.Generic;
  * @author Timothy Sesler
  * @author tds45
  * @date 4 February 2014
- * 
- * Adapted from work provided online by Austin Takechi 
+ *
+ * Adapted from work provided online by Austin Takechi
  * Contact: MinoruTono@Gmail.com
- */ 
+ */
 public class GridCreator : MonoBehaviour {
-	
+
 	public Transform CellPrefab;
 	public Transform WallPrefab;
 	public Vector3 Size;
@@ -73,7 +73,7 @@ public class GridCreator : MonoBehaviour {
 				Transform cell;
 				cell = Grid[x,z];
 				CellScript cScript = cell.GetComponent<CellScript>();
-				
+
 				if (x - 1 >= 0) {
 					cScript.Adjacents.Add(Grid[x - 1, z]);
 				}
@@ -86,7 +86,7 @@ public class GridCreator : MonoBehaviour {
 				if (z + 1 < Size.z) {
 					cScript.Adjacents.Add(Grid[x, z + 1]);
 				}
-				
+
 				cScript.Adjacents.Sort(SortByLowestWeight);
 			}
 		}
@@ -105,7 +105,7 @@ public class GridCreator : MonoBehaviour {
 	 * Everything after this point pertains to generating the actual maze.
 	 * Look at the Wikipedia page for more info on Prim's Algorithm.
 	 * http://en.wikipedia.org/wiki/Prim%27s_algorithm
-	 ********************************************************************/ 
+	 ********************************************************************/
 	public List<Transform> PathCells;			// The cells in the path through the grid.
 	public List<List<Transform>> AdjSet;		// A list of lists representing available adjacent cells.
 	/** Here is the structure:
@@ -127,17 +127,17 @@ public class GridCreator : MonoBehaviour {
 	 * (Some adjacent cells will be next to
 	 * two or three or four other path cells).
 	 * They are only recorded in the AdjSet once.
-	 */  
+	 */
 
 	// Initializes the sets and the starting cell.
 	void SetStart () {
 		PathCells = new List<Transform>();
 		AdjSet = new List<List<Transform>>();
-		
+
 		for (int i = 0; i < 10; i++) {
-			AdjSet.Add(new List<Transform>());	
+			AdjSet.Add(new List<Transform>());
 		}
-		
+
 		Grid[0, 0].renderer.material.color = Color.green;
 		AddToSet(Grid[0, 0]);
 	}
@@ -145,10 +145,10 @@ public class GridCreator : MonoBehaviour {
 	// Adds a cell to the set of visited cells.
 	void AddToSet (Transform cellToAdd) {
 		PathCells.Add(cellToAdd);
-		
+
 		foreach (Transform adj in cellToAdd.GetComponent<CellScript>().Adjacents) {
 			adj.GetComponent<CellScript>().AdjacentsOpened++;
-			
+
 			if (!PathCells.Contains(adj) && !(AdjSet[adj.GetComponent<CellScript>().Weight].Contains(adj))) {
 				AdjSet[adj.GetComponent<CellScript>().Weight].Add(adj);
 			}
@@ -168,7 +168,7 @@ public class GridCreator : MonoBehaviour {
 			// We've found the lowest sub-list, so there is no need to continue searching.
 			for (int i = 0; i < 10; i++) {
 				lowestList = i;
-				
+
 				if (AdjSet[i].Count > 0) {
 					isEmpty = false;
 					break;
@@ -176,12 +176,12 @@ public class GridCreator : MonoBehaviour {
 			}
 
 			// The maze is complete.
-			if (isEmpty) { 
-				//Debug.Log("Generation completed in " + Time.timeSinceLevelLoad + " seconds."); 
+			if (isEmpty) {
+				//Debug.Log("Generation completed in " + Time.timeSinceLevelLoad + " seconds.");
 				CancelInvoke("FindNext");
 				end = PathCells[PathCells.Count - 1];
 				end.renderer.material.color = Color.red;
-				
+
 				foreach (Transform cell in Grid) {
 					// Removes displayed weight
 					cell.GetComponentInChildren<TextMesh>().renderer.enabled = false;
@@ -244,18 +244,22 @@ public class GridCreator : MonoBehaviour {
 			Start();
 			*/
 		}
+		// Check if the player is at the end
 		if ((player.localPosition.x >= end.localPosition.x - 2f)
-		 && (player.localPosition.x <= end.localPosition.x + 2f) 
+		 && (player.localPosition.x <= end.localPosition.x + 2f)
 		 && (player.localPosition.z >= end.localPosition.z - 2f)
 		 && (player.localPosition.z <= end.localPosition.z + 2f)) {
+		 	// If so, move the old maze down...
 			wall1.Translate(new Vector3(0f, -20f, 0f));
 			wall2.Translate(new Vector3(0f, -20f, 0f));
 			wall3.Translate(new Vector3(0f, -20f, 0f));
 			wall4.Translate(new Vector3(0f, -20f, 0f));
+			// And restart the maze
 			player.localPosition = new Vector3(0f, 5f, 0f);
 			Size.Set(Size.x + 5f, Size.y, Size.z + 5f);
 			transform.Translate(new Vector3(0f, -20f, 0f));
 			Start();
+			// TODO: Increment the level counter
 		}
 	}
 }

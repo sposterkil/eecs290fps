@@ -7,12 +7,12 @@ using System.Collections.Generic;
  * @author Timothy Sesler
  * @author tds45
  * @date 4 February 2014
- * 
- * Adapted from work provided online by Austin Takechi 
+ *
+ * Adapted from work provided online by Austin Takechi
  * Contact: MinoruTono@Gmail.com
- */ 
+ */
 public class CellScript : MonoBehaviour {
-	
+
 	public List<Transform> Adjacents;
 	public Vector3 Position;
 	public int Weight;

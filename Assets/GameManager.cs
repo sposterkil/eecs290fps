@@ -8,13 +8,11 @@ public class GameManager : MonoBehaviour {
     private static GameManager instance;
     private int health, battery, level;
 
-    public static GameManager instance{
-        get{
-            if(instance == null){
-                instance = new GameObject("GameManager").AddComponent();
-            }
-            return instance
+    public static GameManager getInstance(){
+        if(instance == null){
+            // instance = new GameObject("GameManager").AddComponent();
         }
+        return instance;
     }
 
     // Health Gettersetters.  Up and Down methods to simplify damage/heal.
@@ -43,10 +41,11 @@ public class GameManager : MonoBehaviour {
     public int getLevel(){
         return level;
     }
-    public int setLevel(int newLevel){
+    public void setLevel(int newLevel){
         level = newLevel;
     }
-}
-public void OnApplicationQuit(){
-    instance = null;
+
+    public void OnApplicationQuit(){
+        instance = null;
+    }
 }

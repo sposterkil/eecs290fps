@@ -13,16 +13,18 @@ public class HUD : MonoBehaviour {
 		if (HasFlashlight){
 			GUI.Label(new Rect(10,10,80,30),"Flashlight");
 		//	GUI.Label (new Rect(70,10,80,30),Flashlight.BatteryLife.toString("F2"))
-	
+		}
+
 		if (HasGun) {
 			GUI.Label (new Rect(10,10,10,30),"Gun");
-			}
-		GUI.Label (new Rect(10,40,80,30),"Batteries")
-		GUI.Label(new Rect(70,40,80,30),BatteryCount.ToString())
+		}
+
+		GUI.Label (new Rect(10,40,80,30),"Batteries");
+		GUI.Label(new Rect(70,40,80,30),BatteryCount.ToString());
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-	
+ 	void Update () {
+
 	}
 }

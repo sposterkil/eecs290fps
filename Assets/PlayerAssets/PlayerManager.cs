@@ -5,17 +5,19 @@ public class PlayerManager : MonoBehaviour {
 	public enum Weapons {Pistol, Submachine, Sword};
 	public static Weapons wep;
 	public int current;
-	
+	public int health, battery;
+
 	public Transform pistol;
 	public Transform submachine;
 	public Transform sword;
-	
+
 	// Use this for initialization
 	void Start () {
 		wep = Weapons.Pistol;
 		pistol.active = true;
+		health = battery = 100;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetAxis("Scroll") != 0) {
@@ -30,15 +32,15 @@ public class PlayerManager : MonoBehaviour {
 		}
 		current %= 3;
 		switch (current) {
-			case 0: 
+			case 0:
 				wep = Weapons.Pistol;
 				pistol.active = true;
 				break;
-			case 1: 
+			case 1:
 				wep = Weapons.Submachine;
 				submachine.active = true;
 				break;
-			case 2: 
+			case 2:
 				wep = Weapons.Sword;
 				sword.active = true;
 				break;

@@ -240,23 +240,25 @@ public class GridCreator : MonoBehaviour {
 			
 		}
 		// Check if the player is at the end
-		if ((player.localPosition.x >= end.localPosition.x - 2f)
-		 && (player.localPosition.x <= end.localPosition.x + 2f)
-		 && (player.localPosition.z >= end.localPosition.z - 2f)
-		 && (player.localPosition.z <= end.localPosition.z + 2f)) {
-		 	// If so, destroy the old maze...
-			Destroy(wall1.transform.gameObject);
-			Destroy(wall2.transform.gameObject);
-			Destroy(wall3.transform.gameObject);
-			Destroy(wall4.transform.gameObject);
-			for (int i = 0; i < transform.childCount; i++) {
-				Destroy(transform.GetChild(i).gameObject);
+		if (end != null) {
+			if ((player.localPosition.x >= end.localPosition.x - 2f)
+			 && (player.localPosition.x <= end.localPosition.x + 2f)
+			 && (player.localPosition.z >= end.localPosition.z - 2f)
+			 && (player.localPosition.z <= end.localPosition.z + 2f)) {
+				// If so, destroy the old maze...
+				Destroy(wall1.transform.gameObject);
+				Destroy(wall2.transform.gameObject);
+				Destroy(wall3.transform.gameObject);
+				Destroy(wall4.transform.gameObject);
+				for (int i = 0; i < transform.childCount; i++) {
+					Destroy(transform.GetChild(i).gameObject);
+				}
+				// And restart the maze
+				player.localPosition = new Vector3(0f, 5f, 0f);
+				Size.Set(Size.x + 5f, Size.y, Size.z + 5f);
+				Start();
+				// TODO: Increment the level counter
 			}
-			// And restart the maze
-			player.localPosition = new Vector3(0f, 5f, 0f);
-			Size.Set(Size.x + 5f, Size.y, Size.z + 5f);
-			Start();
-			// TODO: Increment the level counter
 		}
 	}
 }

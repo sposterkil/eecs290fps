@@ -52,7 +52,7 @@ public class MonsterAI : MonoBehaviour {
 	}
 
 	Vector3 GetTarget(){
-		return new Vector3 (Random.Range (135, 950), 0, Random.Range (88, 633));
+		return new Vector3 (Random.Range (0, 10), 0, Random.Range (0, 10));
 	}
 
 	void NewTarget(){

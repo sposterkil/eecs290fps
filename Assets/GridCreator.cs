@@ -21,6 +21,9 @@ public class GridCreator : MonoBehaviour {
 	public Transform end;
 	public Transform player;
 
+	public Transform MonsterPrefab;
+	public int Monsters = 0;
+
 	private Transform wall1;
 	private Transform wall2;
 	private Transform wall3;
@@ -28,6 +31,12 @@ public class GridCreator : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		if (Monsters < 1) {
+			Monsters = 1;
+		}
+		else {
+			Monsters = Monsters * 2;
+		}
 		CreateGrid();
 		SetRandomNumbers();
 		SetAdjacents();

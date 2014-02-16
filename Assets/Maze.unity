@@ -315,6 +315,7 @@ GameObject:
   - 124: {fileID: 453559478}
   - 114: {fileID: 453559477}
   - 81: {fileID: 453559476}
+  - 111: {fileID: 453559481}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -411,6 +412,29 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_HDR: 0
   m_OcclusionCulling: 1
+--- !u!111 &453559481
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 453559474}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 6cfa1be26a79ef54aba3db4295bd4e04, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 6cfa1be26a79ef54aba3db4295bd4e04, type: 2}
+  - {fileID: 7400000, guid: 29a6dafb979ee2741a921a3a6bafe1b4, type: 2}
+  - {fileID: 7400000, guid: fcd7e072f00e863489ddeda3ba4f9083, type: 2}
+  - {fileID: 7400000, guid: 25790f894dc41a248980bbac44f2957e, type: 2}
+  - {fileID: 7400000, guid: 140b2fd0a05134e4483d778f5bebe721, type: 2}
+  - {fileID: 7400000, guid: ca1a60409a05f2b45a984d6a3b10ab01, type: 2}
+  - {fileID: 7400000, guid: e515a6396bb31784c8262cf978d23b5a, type: 2}
+  - {fileID: 7400000, guid: 1add9fff06676194abb04e7105c3e9b4, type: 2}
+  - {fileID: 7400000, guid: 4e8c0376ebc342e49ab37f2ced89bca5, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &465855847
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +447,9 @@ GameObject:
   - 114: {fileID: 465855850}
   - 114: {fileID: 465855849}
   - 114: {fileID: 465855848}
+  - 114: {fileID: 465855854}
   - 114: {fileID: 465855853}
+  - 114: {fileID: 465855855}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -554,7 +580,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 465855847}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e75f23fb171b14a7299623a069f8c549, type: 3}
+  m_Script: {fileID: 11500000, guid: 5caa844c97463cb48a8f8c3cf1339e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current: 0
+  pistol: {fileID: 1931344961}
+  submachine: {fileID: 587797792}
+  sword: {fileID: 763625751}
+--- !u!114 &465855854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 465855847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0480b93c97f7252419134902da150c8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &465855855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 465855847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02d8ed61976a35046bf28db20351becf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &587797791

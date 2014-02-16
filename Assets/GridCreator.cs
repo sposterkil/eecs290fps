@@ -237,27 +237,24 @@ public class GridCreator : MonoBehaviour {
 	void Update() {
 		// Pressing 'F1' will generate a new maze.
 		if (Input.GetKeyDown(KeyCode.F1)) {
-			/*
-			player.localPosition = new Vector3(0f, 5f, 0f);
-			Size.Set(Size.x + 5f, Size.y, Size.z + 5f);
-			transform.Translate(new Vector3(0f, -20f, 0f));
-			Start();
-			*/
+			
 		}
 		// Check if the player is at the end
 		if ((player.localPosition.x >= end.localPosition.x - 2f)
 		 && (player.localPosition.x <= end.localPosition.x + 2f)
 		 && (player.localPosition.z >= end.localPosition.z - 2f)
 		 && (player.localPosition.z <= end.localPosition.z + 2f)) {
-		 	// If so, move the old maze down...
-			wall1.Translate(new Vector3(0f, -20f, 0f));
-			wall2.Translate(new Vector3(0f, -20f, 0f));
-			wall3.Translate(new Vector3(0f, -20f, 0f));
-			wall4.Translate(new Vector3(0f, -20f, 0f));
+		 	// If so, destroy the old maze...
+			Destroy(wall1.transform.gameObject);
+			Destroy(wall2.transform.gameObject);
+			Destroy(wall3.transform.gameObject);
+			Destroy(wall4.transform.gameObject);
+			for (int i = 0; i < transform.childCount; i++) {
+				Destroy(transform.GetChild(i).gameObject);
+			}
 			// And restart the maze
 			player.localPosition = new Vector3(0f, 5f, 0f);
 			Size.Set(Size.x + 5f, Size.y, Size.z + 5f);
-			transform.Translate(new Vector3(0f, -20f, 0f));
 			Start();
 			// TODO: Increment the level counter
 		}

@@ -192,6 +192,9 @@ public class GridCreator : MonoBehaviour {
 						cell.localScale += new Vector3(0f, 5f, 0f);
 						cell.localPosition += new Vector3(0f, 3.5f, 0f);
 					}
+					else {
+						//TODO: Add monster spawning here?
+					}
 				}
 				return;
 			}
@@ -237,7 +240,7 @@ public class GridCreator : MonoBehaviour {
 	void Update() {
 		// Pressing 'F1' will generate a new maze.
 		if (Input.GetKeyDown(KeyCode.F1)) {
-			
+
 		}
 		// Check if the player is at the end
 		if (end != null) {

@@ -196,10 +196,7 @@ public class GridCreator : MonoBehaviour {
 					cell.GetComponentInChildren<TextMesh>().renderer.enabled = false;
 
 					if (!PathCells.Contains(cell)) {
-						// HINT: Try something here to make the maze 3D
-						// cell.renderer.material.color = Color.black;
-						Texture2D spacewalltex = Resources.Load("spacewall.jpg") as Texture2D;
-						cell.renderer.material.mainTexture = spacewalltex;
+						// Make the maze 3D
 						cell.localScale += new Vector3(0f, 5f, 0f);
 						cell.localPosition += new Vector3(0f, 3.5f, 0f);
 					}
@@ -234,9 +231,6 @@ public class GridCreator : MonoBehaviour {
 		wall2 = (Transform)Instantiate(WallPrefab, new Vector3(6f * Size.x - 1.5f, 3.5f, (Size.z / 2f) * 6f - 3f), Quaternion.identity);
 		wall2.name = string.Format("Wall");
 		wall2.localScale += new Vector3(2f, 5f, Size.z * 6f);
-
-
-
 		//Wall 3
 		wall3 = (Transform)Instantiate(WallPrefab, new Vector3((Size.x / 2f) * 6f - 3f, 3.5f, -4.5f), Quaternion.identity);
 		wall3.name = string.Format("Wall");
@@ -249,10 +243,6 @@ public class GridCreator : MonoBehaviour {
 
 	// Called once per frame.
 	void Update() {
-		// Pressing 'F1' will generate a new maze.
-		if (Input.GetKeyDown(KeyCode.F1)) {
-
-		}
 		// Check if the player is at the end
 		if (end != null) {
 			if ((player.localPosition.x >= end.localPosition.x - 2f)

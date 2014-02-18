@@ -913,6 +913,7 @@ MonoBehaviour:
   pistol: {fileID: 1931344961}
   submachine: {fileID: 587797792}
   sword: {fileID: 763625751}
+  Flashlight: {fileID: 871769149}
 --- !u!114 &465855854
 MonoBehaviour:
   m_ObjectHideFlags: 0

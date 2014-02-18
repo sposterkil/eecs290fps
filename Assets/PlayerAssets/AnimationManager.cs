@@ -25,10 +25,16 @@ public class AnimationManager : MonoBehaviour {
 			anim = Animations.Idle;
 			
 		if (CombatSystem.attacking) {
-			if (anim != Animations.Attack) {
-				transform.GetChild(1).animation.Play("Attack" + w);
-				anim = Animations.Attack;
-				pistolShot.Play ();
+				if (anim != Animations.Attack) {
+					if ((((PlayerManager.wep == PlayerManager.Weapons.Pistol)
+					    ||(PlayerManager.wep == PlayerManager.Weapons.Submachine))
+			            &&(PlayerManager.ammo > 0))
+					   
+					    ||(PlayerManager.wep == PlayerManager.Weapons.Sword)) {
+							transform.GetChild(1).animation.Play("Attack" + w);
+							anim = Animations.Attack;
+							pistolShot.Play ();
+				}
 			}
 		}
 		

@@ -42,7 +42,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	 void Update () {
 		HUDManager.SetBattery (battery);
 		HUDManager.SetHealth (health);
 		HUDManager.SetAmmo (ammo);

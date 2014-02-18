@@ -42,6 +42,7 @@ public class HUDManager : MonoBehaviour {
 		battery.enabled = true;
 		crosshairs.enabled = true;
 		enabled = false;
+		SetBattery (100);
 	}
 
 	private void GameOver () {

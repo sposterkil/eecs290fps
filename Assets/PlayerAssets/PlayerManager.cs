@@ -22,7 +22,25 @@ public class PlayerManager : MonoBehaviour {
 		HUDManager.SetHealth (health);
 		HUDManager.SetAmmo (ammo);
 	}
-	
+
+	public void SetWeapon(Weapons w){
+		switch (w) {
+			case Weapons.Pistol:
+				pistol.active = true;
+				break;
+			case Weapons.Submachine:
+				submachine.active = true;
+				break;
+			case Weapons.Sword:
+				sword.active = true;
+				break;
+			default:
+				Debug.Log("Got bad weapon type: " + w);
+				break;
+		}
+		wep = w;
+	}
+
 	// Update is called once per frame
 	void Update () {
 		HUDManager.SetBattery (battery);

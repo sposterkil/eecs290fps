@@ -22,7 +22,6 @@ public class PlayerManager : MonoBehaviour {
 		HUDManager.SetHealth (health);
 		HUDManager.SetAmmo (ammo);
 	}
-<<<<<<< HEAD
 
 	public void SetWeapon(Weapons w){
 		switch (w) {
@@ -42,9 +41,6 @@ public class PlayerManager : MonoBehaviour {
 		wep = w;
 	}
 
-=======
-	
->>>>>>> e344e596f574982f3f136e46202552bae4fe00e3
 	// Update is called once per frame
 	void Update () {
 		HUDManager.SetBattery (battery);

@@ -6,6 +6,7 @@ public class PlayerManager : MonoBehaviour {
 	public static Weapons wep;
 	public int current;
 	public int health, battery;
+	public static int ammo;
 
 	public Transform pistol;
 	public Transform submachine;
@@ -16,7 +17,12 @@ public class PlayerManager : MonoBehaviour {
 		wep = Weapons.Pistol;
 		pistol.active = true;
 		health = battery = 100;
+		ammo = 60;
+		HUDManager.SetBattery (battery);
+		HUDManager.SetHealth (health);
+		HUDManager.SetAmmo (ammo);
 	}
+<<<<<<< HEAD
 
 	public void SetWeapon(Weapons w){
 		switch (w) {
@@ -36,8 +42,15 @@ public class PlayerManager : MonoBehaviour {
 		wep = w;
 	}
 
+=======
+	
+>>>>>>> e344e596f574982f3f136e46202552bae4fe00e3
 	// Update is called once per frame
 	void Update () {
+		HUDManager.SetBattery (battery);
+		HUDManager.SetHealth (health);
+		HUDManager.SetAmmo (ammo);
+
 		if (Input.GetAxis("Scroll") != 0) {
 			transform.GetChild(1).animation.Stop();
 			pistol.active = false;

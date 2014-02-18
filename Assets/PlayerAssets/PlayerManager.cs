@@ -45,5 +45,13 @@ public class PlayerManager : MonoBehaviour {
 				sword.active = true;
 				break;
 		}
+	 	
+		if (this.health <= 0) { // player is dead
+			GameEventManager.TriggerGameOver ();
+		}
+
+		if (Input.GetKeyDown ("f2")) {// kill player when f2 is pressed
+				this.health = 0;
+		}
 	}
 }

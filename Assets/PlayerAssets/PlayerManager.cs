@@ -5,7 +5,8 @@ public class PlayerManager : MonoBehaviour {
 	public enum Weapons {Pistol, Submachine, Sword};
 	public static Weapons wep;
 	public int current;
-	public int health, battery, ammo;
+	public int health, battery;
+	public static int ammo;
 
 	public Transform pistol;
 	public Transform submachine;

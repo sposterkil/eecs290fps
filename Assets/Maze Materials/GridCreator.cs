@@ -197,7 +197,9 @@ public class GridCreator : MonoBehaviour {
 
 					if (!PathCells.Contains(cell)) {
 						// HINT: Try something here to make the maze 3D
-						cell.renderer.material.color = Color.black;
+						// cell.renderer.material.color = Color.black;
+						Texture2D spacewalltex = Resources.Load("spacewall.jpg") as Texture2D;
+						cell.renderer.material.mainTexture = spacewalltex;
 						cell.localScale += new Vector3(0f, 5f, 0f);
 						cell.localPosition += new Vector3(0f, 3.5f, 0f);
 					}

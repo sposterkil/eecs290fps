@@ -17,14 +17,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 2800000, guid: 596062e7254684df0ae29521ff4967b3, type: 3}
           m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
+          m_Offset: {x: 1, y: 1}
     m_Floats:
       data:
         first:
           name: _Shininess
-        second: .078125
+        second: .364637345
     m_Colors:
       data:
         first:

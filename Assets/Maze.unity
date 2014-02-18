@@ -12,13 +12,13 @@ SceneSettings:
     backfaceThreshold: 100
 --- !u!104 &2
 RenderSettings:
-  m_Fog: 0
-  m_FogColor: {r: .5, g: .5, b: .5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0, g: 0, b: 0, a: 1}
   m_FogMode: 3
-  m_FogDensity: .00999999978
+  m_FogDensity: .100000001
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_AmbientLight: {r: 0, g: 0, b: 0, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: aa3248fab1ad13c4d87bf5e6e6441521, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
@@ -228,6 +228,10 @@ Prefab:
     - target: {fileID: 2000000, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
       propertyPath: m_OcclusionCulling
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+      propertyPath: field of view
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
@@ -530,8 +534,7 @@ Transform:
   - {fileID: 763625751}
   - {fileID: 587797792}
   - {fileID: 1931344961}
-  - {fileID: 1921381194}
-  - {fileID: 1023663780}
+  - {fileID: 871769149}
   m_Father: {fileID: 465855852}
 --- !u!81 &453559476
 AudioListener:
@@ -907,7 +910,6 @@ MonoBehaviour:
   current: 0
   health: 0
   battery: 0
-  ammo: 0
   pistol: {fileID: 1931344961}
   submachine: {fileID: 587797792}
   sword: {fileID: 763625751}
@@ -1300,6 +1302,34 @@ GUITexture:
   m_RightBorder: 0
   m_TopBorder: 0
   m_BottomBorder: 0
+--- !u!1 &871769148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 871769149}
+  m_Layer: 0
+  m_Name: Flashlight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &871769149
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 871769148}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -5.90708351, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1921381194}
+  - {fileID: 1023663780}
+  m_Father: {fileID: 453559475}
 --- !u!1 &872402574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1325,8 +1355,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 1
-  m_Color: {r: 0, g: .0790060163, b: .602941155, a: 1}
-  m_Intensity: .0700000003
+  m_Color: {r: .158620834, g: 0, b: 1, a: 1}
+  m_Intensity: .0199999996
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -1481,10 +1511,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1023663779}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.907083511, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 453559475}
+  m_Father: {fileID: 871769149}
 --- !u!108 &1023663781
 Light:
   m_ObjectHideFlags: 0
@@ -1818,7 +1848,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddb86b71d0a4e03428ac7f27376f3dcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunSound: {fileID: 1617546466}
 --- !u!82 &1617546466
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2056,10 +2085,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1921381193}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -.907083511, z: 0}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 453559475}
+  m_Father: {fileID: 871769149}
 --- !u!108 &1921381195
 Light:
   m_ObjectHideFlags: 0

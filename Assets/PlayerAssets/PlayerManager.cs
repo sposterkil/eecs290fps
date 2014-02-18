@@ -5,20 +5,24 @@ public class PlayerManager : MonoBehaviour {
 	public enum Weapons {Pistol, Submachine, Sword};
 	public static Weapons wep;
 	public int current;
-	public int health, battery;
+	public int health;
+	public float battery;
 	public static int ammo;
 
 	public Transform pistol;
 	public Transform submachine;
 	public Transform sword;
+	public Transform Flashlight;
 
 	// Use this for initialization
 	void Start () {
 		wep = Weapons.Pistol;
+		Flashlight.active = true;
 		pistol.active = true;
-		health = battery = 100;
+		health = 100;
+		battery = 100;
 		ammo = 60;
-		HUDManager.SetBattery (battery);
+		HUDManager.SetBattery ((int)battery);
 		HUDManager.SetHealth (health);
 		HUDManager.SetAmmo (ammo);
 	}
@@ -41,9 +45,13 @@ public class PlayerManager : MonoBehaviour {
 		wep = w;
 	}
 
+	public void GetBattery(){
+		battery++;
+	}
+
 	// Update is called once per frame
 	 void Update () {
-		HUDManager.SetBattery (battery);
+		HUDManager.SetBattery ((int)battery);
 		HUDManager.SetHealth (health);
 		HUDManager.SetAmmo (ammo);
 
@@ -80,5 +88,11 @@ public class PlayerManager : MonoBehaviour {
 		if (Input.GetKeyDown ("f2")) {// kill player when f2 is pressed
 				this.health = 0;
 		}
+		if (battery > 0) {
+				battery -= .1f;
+			}
+		else{
+			Flashlight.active = false;
 	}
+}
 }

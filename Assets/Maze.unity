@@ -130,6 +130,64 @@ Prefab:
   m_RootGameObject: {fileID: 465855847}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &74889441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100002, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+  m_PrefabInternal: {fileID: 890162204}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 74889442}
+  - 33: {fileID: 74889444}
+  - 23: {fileID: 74889443}
+  m_Layer: 0
+  m_Name: DartGun
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &74889442
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400002, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+  m_PrefabInternal: {fileID: 890162204}
+  m_GameObject: {fileID: 74889441}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 408648203}
+--- !u!23 &74889443
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: a7262fd167bcf664cade4b08d78c2297,
+    type: 3}
+  m_PrefabInternal: {fileID: 890162204}
+  m_GameObject: {fileID: 74889441}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 4536030551f478645a176cc5fa052a24, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+--- !u!33 &74889444
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300000, guid: a7262fd167bcf664cade4b08d78c2297,
+    type: 3}
+  m_PrefabInternal: {fileID: 890162204}
+  m_GameObject: {fileID: 74889441}
+  m_Mesh: {fileID: 4300000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
 --- !u!1 &229894818
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,6 +304,77 @@ MeshFilter:
   m_PrefabInternal: {fileID: 38495315}
   m_GameObject: {fileID: 321552751}
   m_Mesh: {fileID: 10205, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &408648200
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+  m_PrefabInternal: {fileID: 890162204}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 408648203}
+  - 111: {fileID: 408648202}
+  - 64: {fileID: 408648201}
+  - 114: {fileID: 408648204}
+  m_Layer: 0
+  m_Name: DartGunPickup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!64 &408648201
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 408648200}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 0}
+--- !u!111 &408648202
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11100000, guid: a7262fd167bcf664cade4b08d78c2297,
+    type: 3}
+  m_PrefabInternal: {fileID: 890162204}
+  m_GameObject: {fileID: 408648200}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!4 &408648203
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+  m_PrefabInternal: {fileID: 890162204}
+  m_GameObject: {fileID: 408648200}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 74889442}
+  m_Father: {fileID: 0}
+--- !u!114 &408648204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 408648200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28a6ee4ee0034ed4ac6d938c08cd4d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 465855853}
+  rotationVelocity: {x: 0, y: 0, z: 0}
 --- !u!1001 &417472846
 Prefab:
   m_ObjectHideFlags: 0
@@ -595,7 +724,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5caa844c97463cb48a8f8c3cf1339e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  current: 0
+  carried: 
   health: 0
   battery: 0
   pistol: {fileID: 1931344961}
@@ -909,6 +1038,54 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1001 &890162204
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+      propertyPath: m_Name
+      value: DartGunPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 11100000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a7262fd167bcf664cade4b08d78c2297, type: 3}
+  m_RootGameObject: {fileID: 408648200}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &998189663
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ public class AnimationManager : MonoBehaviour {
 	enum Animations {Attack, Idle, Running};
 	Weapons wep;
 	Animations anim;
+	public AudioSource pistolShot;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +28,7 @@ public class AnimationManager : MonoBehaviour {
 			if (anim != Animations.Attack) {
 				transform.GetChild(1).animation.Play("Attack" + w);
 				anim = Animations.Attack;
+				pistolShot.Play ();
 			}
 		}
 		

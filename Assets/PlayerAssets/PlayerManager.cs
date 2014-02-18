@@ -5,7 +5,7 @@ public class PlayerManager : MonoBehaviour {
 	public enum Weapons {Pistol, Submachine, Sword};
 	public static Weapons wep;
 	public int current;
-	public int health, battery;
+	public int health, battery, ammo;
 
 	public Transform pistol;
 	public Transform submachine;
@@ -16,10 +16,18 @@ public class PlayerManager : MonoBehaviour {
 		wep = Weapons.Pistol;
 		pistol.active = true;
 		health = battery = 100;
+		ammo = 60;
+		HUDManager.SetBattery (battery);
+		HUDManager.SetHealth (health);
+		HUDManager.SetAmmo (ammo);
 	}
-
+	
 	// Update is called once per frame
 	void Update () {
+		HUDManager.SetBattery (battery);
+		HUDManager.SetHealth (health);
+		HUDManager.SetAmmo (ammo);
+
 		if (Input.GetAxis("Scroll") != 0) {
 			transform.GetChild(1).animation.Stop();
 			pistol.active = false;
@@ -45,7 +53,11 @@ public class PlayerManager : MonoBehaviour {
 				sword.active = true;
 				break;
 		}
-	 	
+		if (CombatSystem.attacking) {
+			ammo--;
+			HUDManager.SetAmmo (ammo);
+		}
+
 		if (this.health <= 0) { // player is dead
 			GameEventManager.TriggerGameOver ();
 		}

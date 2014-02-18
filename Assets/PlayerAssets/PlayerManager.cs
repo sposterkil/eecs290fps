@@ -53,10 +53,6 @@ public class PlayerManager : MonoBehaviour {
 				sword.active = true;
 				break;
 		}
-		if (CombatSystem.attacking) {
-			ammo--;
-			HUDManager.SetAmmo (ammo);
-		}
 
 		if (this.health <= 0) { // player is dead
 			GameEventManager.TriggerGameOver ();

@@ -15,6 +15,8 @@ public class MonsterAI : MonoBehaviour {
 	float maxRotSpeed = 200.0f;
 	float minTime = 0.1f;
 	float velocity;
+	
+	int health;
 
 	bool change;
 	float range;
@@ -30,6 +32,7 @@ public class MonsterAI : MonoBehaviour {
 		range = 2f;
 		target = GetTarget ();
 		InvokeRepeating ("NewTarget", 0.01f, 1.0f);
+		health = 100;
 	}
 
 	// Update is called once per frame
@@ -72,5 +75,11 @@ public class MonsterAI : MonoBehaviour {
 			target = _transform.position;
 			break;
 		}
+	}
+	
+	public void damage(int damage) {
+		health -= damage;
+		if (health <= 0)
+			Destroy(transform.gameObject);
 	}
 }

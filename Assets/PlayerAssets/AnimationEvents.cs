@@ -12,12 +12,19 @@ public class AnimationEvents : MonoBehaviour {
 				PlayerManager.ammo--;
 				if (Physics.Raycast(transform.position, fwd, out hit, 100)) {
 					Debug.DrawLine(transform.position, hit.point, Color.green);
+					if (hit.collider.gameObject.name == "monster(Clone)") {
+						if (PlayerManager.wep == PlayerManager.Weapons.Pistol)
+							hit.transform.gameObject.GetComponent<MonsterAI>().damage(40);
+						else
+							hit.transform.gameObject.GetComponent<MonsterAI>().damage(20);
+					}
 				}
 			}
-			//AnimationManager.pistolShot.Play();
 		}
 		else if(Physics.Raycast(transform.position, fwd, out hit, 3)) {
 			Debug.DrawLine(transform.position, hit.point, Color.red);
+			if (hit.collider.gameObject.name == "monster(Clone)")
+				hit.transform.gameObject.GetComponent<MonsterAI>().damage(50);
 		}
 	}
 }

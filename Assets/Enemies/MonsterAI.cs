@@ -31,8 +31,12 @@ public class MonsterAI : MonoBehaviour {
 		target = GetTarget ();
 		InvokeRepeating ("NewTarget", 0.01f, 1.0f);
 	}
+
 	// Update is called once per frame
 	void Update () {
+		if (_transform.position.y < -5) {
+			DestroyImmediate(this.gameObject);
+		}
 		if (change) {
 			target = GetTarget();
 		}
@@ -52,7 +56,7 @@ public class MonsterAI : MonoBehaviour {
 	}
 
 	Vector3 GetTarget(){
-		return new Vector3 (Random.Range (0, 10), 0, Random.Range (0, 10));
+		return new Vector3 (Random.Range (0, GridCreator.dimensions), 0, Random.Range (0, GridCreator.dimensions));
 	}
 
 	void NewTarget(){

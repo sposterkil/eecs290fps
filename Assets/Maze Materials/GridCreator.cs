@@ -21,8 +21,11 @@ public class GridCreator : MonoBehaviour {
 	public Transform end;
 	public Transform player;
 
+	public static float dimensions;
+
 	public Transform MonsterPrefab;
 	public int Monsters = 0;
+	public int MonstersSpawned = 0;
 
 	private Transform wall1;
 	private Transform wall2;
@@ -35,8 +38,9 @@ public class GridCreator : MonoBehaviour {
 			Monsters = 1;
 		}
 		else {
-			Monsters = Monsters * 2;
+			Monsters = Monsters * 4;
 		}
+		MonstersSpawned = 0;
 		CreateGrid();
 		SetRandomNumbers();
 		SetAdjacents();
@@ -48,6 +52,7 @@ public class GridCreator : MonoBehaviour {
 	// Creates the grid by instantiating provided cell prefabs.
 	void CreateGrid () {
 		Grid = new Transform[(int)Size.x,(int)Size.z];
+		dimensions = (Size.x - 1) * 6;
 
 		// Places the cells and names them according to their coordinates in the grid.
 		for (int x = 0; x < Size.x; x++) {
@@ -201,7 +206,11 @@ public class GridCreator : MonoBehaviour {
 						cell.localPosition += new Vector3(0f, 3.5f, 0f);
 					}
 					else {
-						//TODO: Add monster spawning here?
+						if(MonstersSpawned < Monsters){
+							Transform newMonster;
+							newMonster = (Transform)Instantiate (MonsterPrefab, new Vector3(Random.Range (0, dimensions), 7f, Random.Range (0, dimensions)), Quaternion.identity);
+							MonstersSpawned++;
+						}
 					}
 				}
 				return;

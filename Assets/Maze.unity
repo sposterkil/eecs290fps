@@ -1489,6 +1489,7 @@ MonoBehaviour:
   player: {fileID: 465855852}
   MonsterPrefab: {fileID: 400006, guid: dd1deefa83ec1ed48826cc7cfe7ca368, type: 2}
   Monsters: 0
+  MonstersSpawned: 0
   PathCells: []
 --- !u!1 &1020065805
 GameObject:

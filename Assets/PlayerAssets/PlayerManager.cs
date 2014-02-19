@@ -46,7 +46,7 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void GetBattery(){
-		battery++;
+		battery += 25;
 	}
 
 	// Update is called once per frame
@@ -81,18 +81,19 @@ public class PlayerManager : MonoBehaviour {
 				break;
 		}
 
+		if (Input.GetKeyDown ("f2")) {// kill player when f2 is pressed
+				this.health = 0;
+		}
+
 		if (this.health <= 0) { // player is dead
 			GameEventManager.TriggerGameOver ();
 		}
 
-		if (Input.GetKeyDown ("f2")) {// kill player when f2 is pressed
-				this.health = 0;
-		}
 		if (battery > 0) {
-				battery -= .1f;
-			}
+			battery -= .001f;
+		}
 		else{
 			Flashlight.active = false;
+		}
 	}
-}
 }

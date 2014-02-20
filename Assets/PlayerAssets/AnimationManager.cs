@@ -8,6 +8,8 @@ public class AnimationManager : MonoBehaviour {
 	Weapons wep;
 	Animations anim;
 	public AudioSource pistolShot;
+	public AudioSource smgShot;
+	public AudioSource swordSound;
 
 	// Use this for initialization
 	void Start () {
@@ -34,7 +36,12 @@ public class AnimationManager : MonoBehaviour {
 							||(PlayerManager.wep == PlayerManager.Weapons.Sword)) {
 								transform.GetChild(1).animation.Play("Attack" + w);
 								anim = Animations.Attack;
+						if (PlayerManager.wep == PlayerManager.Weapons.Pistol)
 								pistolShot.Play ();
+						else if (PlayerManager.wep == PlayerManager.Weapons.Submachine)
+							smgShot.Play ();
+						else if (PlayerManager.wep == PlayerManager.Weapons.Sword)
+							swordSound.Play ();
 					}
 				}
 			}

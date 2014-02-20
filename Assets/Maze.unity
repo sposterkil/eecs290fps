@@ -1557,7 +1557,7 @@ GUIText:
   m_GameObject: {fileID: 991341637}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: Press "Fire" to start the game
+  m_Text: Press "Space" to start the spacening!
   m_Anchor: 4
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}

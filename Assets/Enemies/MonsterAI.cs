@@ -60,6 +60,9 @@ public class MonsterAI : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		if (health < 100 && !chasing) {
+			chasing = true;
+		}
 		if (_transform.position.y < -5) {
 			DestroyImmediate (this.gameObject);
 		}

@@ -30,15 +30,17 @@ public class PlayerManager : MonoBehaviour {
 		HUDManager.SetBattery ((int)battery);
 		HUDManager.SetHealth (health);
 		HUDManager.SetAmmo (ammo);
-		enabled = false;
+		disable();
 	}
 	
 	public void enable() {
 		enabled = true;
+		CharacterMotor.Enable();
 	}
 	
 	public void disable() {
 		enabled = false;
+		CharacterMotor.Disable();
 	}
 
 	public void SetWeapon(Weapons w){
@@ -113,7 +115,9 @@ public class PlayerManager : MonoBehaviour {
 				Flashlight.active = false;
 			}
 		}
-		else
+		else {
 			transform.GetChild(1).animation.Stop();
+			disable();
+		}
 	}
 }

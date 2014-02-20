@@ -3,7 +3,7 @@
 #pragma downcast
 
 // Does this script currently respond to input?
-var canControl : boolean = true;
+static var canControl : boolean = true;
 
 var useFixedUpdate : boolean = true;
 
@@ -306,6 +306,14 @@ private function UpdateFunction () {
         movingPlatform.activeGlobalRotation = tr.rotation;
         movingPlatform.activeLocalRotation = Quaternion.Inverse(movingPlatform.activePlatform.rotation) * movingPlatform.activeGlobalRotation; 
 	}
+}
+
+public static function Disable() {
+	canControl = false;
+}
+
+public static function Enable() {
+	canControl = true;
 }
 
 function FixedUpdate () {

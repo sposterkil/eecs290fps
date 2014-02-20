@@ -25,7 +25,7 @@ public class Pickups : MonoBehaviour {
                 break;
             case "BattPickup":
                 Debug.Log("Picked up Battery");
-                player.health = Mathf.Min(100, player.battery + 20);
+                player.battery = Mathf.Min(100, (int)player.battery + 20);
                 break;
             case "HPPickup":
                 Debug.Log("Picked up Health");

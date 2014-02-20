@@ -26,10 +26,9 @@ public class GridCreator : MonoBehaviour {
 	public Transform end;
 	public Transform player;
 
-	public Transform PistolPickup;
-	public Transform SMGPickup;
+	public Transform AmmoPickup;
 	public Transform BatteryPickup;
-	public Transform HealthPickup;
+	public Transform HPPickup;
 
 	public static float dimensions;
 
@@ -245,13 +244,18 @@ public class GridCreator : MonoBehaviour {
 	}
 
 	void SpawnPickups(Transform cell){
-		if (Random.Range(0, 100) <= 100){
-
+		if (Random.Range(0, 100) <= 20){
+			Instantiate(AmmoPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+			return;
 		}
-		if (Random.Range(0, 100) <= 100){
-
+		if (Random.Range(0, 100) <= 20){
+			Instantiate(HPPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+			return;
 		}
-
+		if (Random.Range(0, 100) <= 20){
+			Instantiate(BatteryPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+			return;
+		}
 	}
 
 	void BuildWalls() {

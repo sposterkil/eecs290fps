@@ -63,10 +63,6 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
-	public void GetBattery(){
-		battery += 25;
-	}
-
 	// Update is called once per frame
 	 void Update () {
 		if (enabled) {
@@ -106,6 +102,7 @@ public class PlayerManager : MonoBehaviour {
 
 			if (this.health <= 0) { // player is dead
 				GameEventManager.TriggerGameOver ();
+				Application.LoadLevel (0);
 			}
 
 			if (battery > 0) {

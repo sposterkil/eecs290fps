@@ -8,7 +8,7 @@ public class Pickups : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player").GetComponent<PlayerManager>();
 	}
 
 	// Update is called once per frame
@@ -17,17 +17,24 @@ public class Pickups : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider trigger){
-        switch(trigger.transform.tag){
+        Debug.Log("Entered Trigger " + this.tag);
+        switch(this.tag){
             case "AmmoPickup":
+                Debug.Log("Picked up Ammo");
                 PlayerManager.ammo += 60;
                 break;
             case "BattPickup":
-                player.battery += 100;
+                Debug.Log("Picked up Battery");
+                player.battery = Mathf.Min(100, (int)player.battery + 20);
+                break;
+            case "HPPickup":
+                Debug.Log("Picked up Health");
+                player.health = Mathf.Min(100, player.health + 20);
                 break;
             default:
-                Debug.Log("Entered non-weapon or bad-weapon trigger");
+                Debug.Log("bad trigger");
                 break;
         }
-        //gameObject.Destroy(trigger);
+        Object.Destroy(this.gameObject);
     }
 }

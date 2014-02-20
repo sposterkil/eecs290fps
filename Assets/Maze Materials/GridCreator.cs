@@ -213,7 +213,9 @@ public class GridCreator : MonoBehaviour {
 						cell.renderer.material = wallTexture;
 					}
 					else {
-						SpawnPickups(cell);
+						if (cell != Grid[0,0]){
+							SpawnPickups(cell);
+						}
 						cell.renderer.material = floorTexture;
 						if(MonstersSpawned < Monsters){
 							Transform newMonster;

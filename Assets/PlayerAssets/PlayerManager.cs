@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour {
 	public Transform submachine;
 	public Transform sword;
 	public Transform Flashlight;
-	
+
 	public static bool enabled;
 
 	// Use this for initialization
@@ -32,11 +32,11 @@ public class PlayerManager : MonoBehaviour {
 		HUDManager.SetAmmo (ammo);
 		enabled = false;
 	}
-	
+
 	public void enable() {
 		enabled = true;
 	}
-	
+
 	public void disable() {
 		enabled = false;
 	}

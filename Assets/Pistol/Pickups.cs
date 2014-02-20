@@ -8,6 +8,7 @@ public class Pickups : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        player = GameObject.FindWithTag("Player");
 	}
 
 	// Update is called once per frame
@@ -17,25 +18,16 @@ public class Pickups : MonoBehaviour {
 
     void OnTriggerEnter(Collider trigger){
         switch(trigger.transform.tag){
-            case "pistol":
-                player.SetWeapon(PlayerManager.Weapons.Pistol);
+            case "AmmoPickup":
+                PlayerManager.ammo += 60;
                 break;
-            case "smg":
-                player.SetWeapon(PlayerManager.Weapons.Submachine);
-                break;
-            case "sword":
-                player.SetWeapon(PlayerManager.Weapons.Sword);
+            case "BattPickup":
+                player.battery += 100;
                 break;
             default:
                 Debug.Log("Entered non-weapon or bad-weapon trigger");
                 break;
         }
-        gameObject.SetActive(false);
-    }
-
-    void Spawn(Vector3 pos){
-        if (false){
-            gameObject.SetActive(true);
-        }
+        gameObject.Destroy(trigger);
     }
 }

@@ -106,7 +106,7 @@ public class PlayerManager : MonoBehaviour {
 			}
 
 			if (battery > 0) {
-				battery -= .001f;
+				battery -= .01f;
 			}
 			else{
 				Flashlight.active = false;

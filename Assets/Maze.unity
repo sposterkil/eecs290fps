@@ -902,6 +902,7 @@ Transform:
   m_Children:
   - {fileID: 321552752}
   - {fileID: 453559475}
+  - {fileID: 1596605056}
   m_Father: {fileID: 0}
 --- !u!114 &465855853
 MonoBehaviour:
@@ -1502,7 +1503,7 @@ MonoBehaviour:
   SMGPickup: {fileID: 0}
   BatteryPickup: {fileID: 0}
   HealthPickup: {fileID: 0}
-  MonsterPrefab: {fileID: 400006, guid: dd1deefa83ec1ed48826cc7cfe7ca368, type: 2}
+  MonsterPrefab: {fileID: 400128, guid: 748e535a143339042a29011f9352c4c9, type: 2}
   Monsters: 0
   MonstersSpawned: 0
   PathCells: []
@@ -1857,6 +1858,32 @@ Prefab:
   m_RootGameObject: {fileID: 763625750}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1596605055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1596605056}
+  m_Layer: 0
+  m_Name: PlayerMarker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1596605056
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1596605055}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 465855852}
 --- !u!1 &1617546461
 GameObject:
   m_ObjectHideFlags: 0

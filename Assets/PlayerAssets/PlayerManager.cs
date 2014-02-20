@@ -63,10 +63,6 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
-	public void GetBattery(){
-		battery += 25;
-	}
-
 	// Update is called once per frame
 	 void Update () {
 		if (enabled) {

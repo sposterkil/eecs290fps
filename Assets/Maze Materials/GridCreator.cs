@@ -14,12 +14,20 @@ using System.Collections.Generic;
  */
 public class GridCreator : MonoBehaviour {
 
+	public Material floorTexture;
+	public Material wallTexture;
+
 	public Transform CellPrefab;
 	public Transform WallPrefab;
 	public Vector3 Size;
 	public Transform[,] Grid;
 	public Transform end;
 	public Transform player;
+
+	public Transform PistolPickup;
+	public Transform SMGPickup;
+	public Transform BatteryPickup;
+	public Transform HealthPickup;
 
 	public static float dimensions;
 
@@ -204,8 +212,10 @@ public class GridCreator : MonoBehaviour {
 						// Make the maze 3D
 						cell.localScale += new Vector3(0f, 5f, 0f);
 						cell.localPosition += new Vector3(0f, 3.5f, 0f);
+						cell.renderer.material = wallTexture;
 					}
 					else {
+						cell.renderer.material = floorTexture;
 						if(MonstersSpawned < Monsters){
 							Transform newMonster;
 							newMonster = (Transform)Instantiate (MonsterPrefab, new Vector3(Random.Range (0, dimensions), 7f, Random.Range (0, dimensions)), Quaternion.identity);
@@ -236,18 +246,22 @@ public class GridCreator : MonoBehaviour {
 		wall1 = (Transform)Instantiate(WallPrefab, new Vector3(-4.5f, 3.5f, (Size.z / 2f) * 6f - 3f), Quaternion.identity);
 		wall1.name = string.Format("Wall");
 		wall1.localScale += new Vector3(2f, 5f, Size.z * 6f);
+		wall1.renderer.material.mainTextureScale = new Vector2(Size.z,1);
 		//Wall 2
 		wall2 = (Transform)Instantiate(WallPrefab, new Vector3(6f * Size.x - 1.5f, 3.5f, (Size.z / 2f) * 6f - 3f), Quaternion.identity);
 		wall2.name = string.Format("Wall");
 		wall2.localScale += new Vector3(2f, 5f, Size.z * 6f);
+		wall2.renderer.material.mainTextureScale = new Vector2(Size.z,1);
 		//Wall 3
 		wall3 = (Transform)Instantiate(WallPrefab, new Vector3((Size.x / 2f) * 6f - 3f, 3.5f, -4.5f), Quaternion.identity);
 		wall3.name = string.Format("Wall");
 		wall3.localScale += new Vector3(Size.x * 6f, 5f, 2f);
+		wall3.renderer.material.mainTextureScale = new Vector2(Size.z,1);
 		//Wall 4
 		wall4 = (Transform)Instantiate(WallPrefab, new Vector3((Size.x / 2f) * 6f - 3f, 3.5f, 6f * Size.z - 1.5f), Quaternion.identity);
 		wall4.name = string.Format("Wall");
 		wall4.localScale += new Vector3(Size.x * 6f, 5f, 2f);
+		wall4.renderer.material.mainTextureScale = new Vector2(Size.z,1);
 	}
 
 	// Called once per frame.

@@ -233,6 +233,10 @@ Prefab:
       propertyPath: field of view
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d4133d5d30b644bd87802a347eaccbe, type: 2}
   m_RootGameObject: {fileID: 465855847}
@@ -776,7 +780,7 @@ GameObject:
   - 114: {fileID: 465855855}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1482,11 +1486,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5981d2182b7e2a8479a19ac3c90b3fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  floorTexture: {fileID: 2100000, guid: db8e28d1a268a4444be9ff9d6a3a5ec6, type: 2}
+  wallTexture: {fileID: 2100000, guid: c32b8a3a1584cd743bde0d6010bc582c, type: 2}
   CellPrefab: {fileID: 400000, guid: 2b73d4d9eb08b7f4b8130ebd72904a7e, type: 2}
   WallPrefab: {fileID: 400000, guid: af4f97832f940c049bfaf41ba20d17b3, type: 2}
   Size: {x: 5, y: 1, z: 5}
   end: {fileID: 0}
   player: {fileID: 465855852}
+  PistolPickup: {fileID: 0}
+  SMGPickup: {fileID: 0}
+  BatteryPickup: {fileID: 0}
+  HealthPickup: {fileID: 0}
   MonsterPrefab: {fileID: 400006, guid: dd1deefa83ec1ed48826cc7cfe7ca368, type: 2}
   Monsters: 0
   MonstersSpawned: 0

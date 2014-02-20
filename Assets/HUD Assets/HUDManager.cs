@@ -7,6 +7,8 @@ public class HUDManager : MonoBehaviour {
 	                        healthText, ammoText, batteryText;
 	public GUITexture ammo, health, battery, crosshairs;
 	private static HUDManager instance;
+	
+	public Transform player;
 
 	// Use this for initialization
 	void Start () {
@@ -26,7 +28,7 @@ public class HUDManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown (0)) {
-				GameEventManager.TriggerGameStart();
+			GameEventManager.TriggerGameStart();
 		}
 	}
 
@@ -43,6 +45,8 @@ public class HUDManager : MonoBehaviour {
 		crosshairs.enabled = true;
 		enabled = false;
 		SetBattery (100);
+		player.GetComponent<PlayerManager>().Start();
+		player.GetComponent<PlayerManager>().enable();
 	}
 
 	private void GameOver () {
@@ -56,6 +60,7 @@ public class HUDManager : MonoBehaviour {
 		health.enabled = false;
 		battery.enabled = false;
 		crosshairs.enabled = false;
+		player.GetComponent<PlayerManager>().disable();
 	}
 
 	public static void SetHealth(int health){

@@ -102,6 +102,7 @@ public class PlayerManager : MonoBehaviour {
 
 			if (this.health <= 0) { // player is dead
 				GameEventManager.TriggerGameOver ();
+				Application.LoadLevel (0);
 			}
 
 			if (battery > 0) {

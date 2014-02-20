@@ -22,7 +22,7 @@ public class MonsterAI : MonoBehaviour {
 	float velocity;
 
 	float wanderSpeed = 4f;
-	float chaseSpeed = 7f;
+	float chaseSpeed = 8f;
 	bool chasing;
 	
 	int health;

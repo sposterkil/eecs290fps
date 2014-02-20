@@ -7,6 +7,7 @@ public class MonsterAI : MonoBehaviour {
 	Transform _transform;
 	Animator animator;
 	Transform _player;
+	PlayerManager _playerManager;
 
 	Transform _eyes;
 	Transform _playerMarker;
@@ -31,16 +32,22 @@ public class MonsterAI : MonoBehaviour {
 	float attackRange = 9f;
 	float squareRange = 160f;
 
+	int attackDelay = 33;
+	int attackTimer;
+	int attackDamage = 2;
+
 	// Use this for initialization
 	void Start () {
 		_controller = GetComponent<CharacterController>();
 		_transform = GetComponent<Transform> ();
 		animator = GetComponent<Animator>();
 		_player = GameObject.Find ("Player").GetComponent<Transform> ();
+		_playerManager = GameObject.Find ("Player").GetComponent<PlayerManager> ();
 		_eyes = _transform.Find ("Eyes");
 		_playerMarker = _player.Find ("PlayerMarker");
 		chasing = false;
 		speed = wanderSpeed;
+		attackTimer = attackDelay - 11;
 		gravity = 20f;
 		animator.SetFloat ("speed", speed);
 		animator.SetBool ("isgrounded", true);
@@ -59,7 +66,13 @@ public class MonsterAI : MonoBehaviour {
 		if (chasing) {
 			if ((_player.position - _transform.position).sqrMagnitude < attackRange) {
 				animator.SetBool ("dojump", true);
-				//PROGRAM ATTACKING ROUTINE HERE
+				if(attackTimer > attackDelay){
+					_playerManager.health -= attackDamage;
+					attackTimer = 0;
+				}
+				else{
+					attackTimer++;
+				}
 			}
 			else{
 				animator.SetBool ("dojump", false);

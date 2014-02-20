@@ -16,6 +16,8 @@ public class GridCreator : MonoBehaviour {
 
 	public Material floorTexture;
 	public Material wallTexture;
+	public Material endTexture;
+	public Material startTexture;
 
 	public Transform CellPrefab;
 	public Transform WallPrefab;
@@ -159,8 +161,6 @@ public class GridCreator : MonoBehaviour {
 		for (int i = 0; i < 10; i++) {
 			AdjSet.Add(new List<Transform>());
 		}
-
-		Grid[0, 0].renderer.material.color = Color.green;
 		AddToSet(Grid[0, 0]);
 	}
 
@@ -202,7 +202,6 @@ public class GridCreator : MonoBehaviour {
 				//Debug.Log("Generation completed in " + Time.timeSinceLevelLoad + " seconds.");
 				CancelInvoke("FindNext");
 				end = PathCells[PathCells.Count - 1];
-				end.renderer.material.color = Color.red;
 
 				foreach (Transform cell in Grid) {
 					// Removes displayed weight
@@ -215,6 +214,7 @@ public class GridCreator : MonoBehaviour {
 						cell.renderer.material = wallTexture;
 					}
 					else {
+						SpawnPickups(cell);
 						cell.renderer.material = floorTexture;
 						if(MonstersSpawned < Monsters){
 							Transform newMonster;
@@ -223,6 +223,9 @@ public class GridCreator : MonoBehaviour {
 						}
 					}
 				}
+				// Give the start and exit some special textures
+				Grid[0, 0].renderer.material = startTexture;
+				end.renderer.material = endTexture;
 				return;
 			}
 			// If we did not finish, then:
@@ -239,6 +242,16 @@ public class GridCreator : MonoBehaviour {
 		AddToSet(next);
 		// Recursively call this function as soon as it finishes.
 		Invoke("FindNext", 0);
+	}
+
+	void SpawnPickups(Transform cell){
+		if (Random.Range(0, 100) <= 100){
+
+		}
+		if (Random.Range(0, 100) <= 100){
+
+		}
+
 	}
 
 	void BuildWalls() {

@@ -73,7 +73,9 @@ public class MonsterAI : MonoBehaviour {
 				animator.SetBool ("dojump", true);
 				if(attackTimer > attackDelay){
 					_playerManager.health -= attackDamage;
-					_playerManager.battery -= batteryDamage;
+					if(_playerManager.battery >= batteryDamage){
+						_playerManager.battery -= batteryDamage;
+					}
 					attackTimer = 0;
 				}
 				else{

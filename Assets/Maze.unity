@@ -274,6 +274,7 @@ Transform:
   - {fileID: 23986058}
   - {fileID: 9705924}
   - {fileID: 555201639}
+  - {fileID: 923717406}
   m_Father: {fileID: 365939918}
 --- !u!1 &229894818
 GameObject:
@@ -420,6 +421,7 @@ Transform:
   - {fileID: 748609906}
   - {fileID: 863866168}
   - {fileID: 1105277795}
+  - {fileID: 949856945}
   m_Father: {fileID: 365939918}
 --- !u!1 &365939917
 GameObject:
@@ -1526,6 +1528,102 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!1 &923717405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 923717406}
+  - 132: {fileID: 923717407}
+  m_Layer: 0
+  m_Name: Oxy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &923717406
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 923717405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .850000024, y: .920000017, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 97975960}
+--- !u!132 &923717407
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 923717405}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: Oxygen
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: -42, y: 18}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 12800000, guid: 2a0352e6cddff7840834ea19065714ad, type: 3}
+  m_Material: {fileID: 0}
+  m_FontSize: 25
+  m_FontStyle: 0
+  m_Color:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_PixelCorrect: 1
+  m_RichText: 1
+--- !u!1 &949856943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 949856945}
+  - 131: {fileID: 949856944}
+  m_Layer: 0
+  m_Name: Oxy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!131 &949856944
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949856943}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: 04d9f25cfb5d929479507c4c81a6bb53, type: 3}
+  m_Color: {r: .448529422, g: .497971743, b: 1, a: .501960814}
+  m_PixelInset:
+    serializedVersion: 2
+    x: -21
+    y: -23
+    width: 50
+    height: 50
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
+--- !u!4 &949856945
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 949856943}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: .949999988, y: .920000017, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 1}
+  m_Children: []
+  m_Father: {fileID: 362714486}
 --- !u!1 &991341637
 GameObject:
   m_ObjectHideFlags: 0
@@ -2288,12 +2386,12 @@ MonoBehaviour:
   healthText: {fileID: 555201640}
   ammoText: {fileID: 23986059}
   batteryText: {fileID: 9705925}
-  oxyText: {fileID: 0}
+  oxyText: {fileID: 923717407}
   ammo: {fileID: 748609907}
   health: {fileID: 1105277794}
   battery: {fileID: 1025721230}
   crosshairs: {fileID: 863866169}
-  oxy: {fileID: 0}
+  oxy: {fileID: 949856944}
   player: {fileID: 465855852}
 --- !u!1 &1921381193
 GameObject:

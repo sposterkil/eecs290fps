@@ -636,6 +636,9 @@ Animation:
   - {fileID: 7400000, guid: e515a6396bb31784c8262cf978d23b5a, type: 2}
   - {fileID: 7400000, guid: 1add9fff06676194abb04e7105c3e9b4, type: 2}
   - {fileID: 7400000, guid: 4e8c0376ebc342e49ab37f2ced89bca5, type: 2}
+  - {fileID: 7400000, guid: 21f3a37bc101d5f48b8bc20572b4b329, type: 2}
+  - {fileID: 7400000, guid: c39a46977abe6654cae970a1759a6606, type: 2}
+  - {fileID: 7400000, guid: 43ee9261537178140aa82887707740a1, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -918,6 +921,7 @@ MonoBehaviour:
   current: 0
   health: 0
   battery: 0
+  oxy: 0
   pistol: {fileID: 1931344961}
   submachine: {fileID: 587797792}
   sword: {fileID: 763625751}
@@ -2284,10 +2288,12 @@ MonoBehaviour:
   healthText: {fileID: 555201640}
   ammoText: {fileID: 23986059}
   batteryText: {fileID: 9705925}
+  oxyText: {fileID: 0}
   ammo: {fileID: 748609907}
   health: {fileID: 1105277794}
   battery: {fileID: 1025721230}
   crosshairs: {fileID: 863866169}
+  oxy: {fileID: 0}
   player: {fileID: 465855852}
 --- !u!1 &1921381193
 GameObject:

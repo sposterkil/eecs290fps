@@ -4,8 +4,8 @@ using System.Collections;
 public class HUDManager : MonoBehaviour {
 
 	public GUIText gameOverText, instructionText, titleText, 
-	                        healthText, ammoText, batteryText;
-	public GUITexture ammo, health, battery, crosshairs;
+	                        healthText, ammoText, batteryText, oxyText;
+	public GUITexture ammo, health, battery, crosshairs, oxy;
 	private static HUDManager instance;
 	
 	public Transform player;
@@ -23,6 +23,8 @@ public class HUDManager : MonoBehaviour {
 		health.enabled = false;
 		battery.enabled = false;
 		crosshairs.enabled = false;
+		oxyText.enabled = false;
+		oxy.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -43,6 +45,8 @@ public class HUDManager : MonoBehaviour {
 		health.enabled = true;
 		battery.enabled = true;
 		crosshairs.enabled = true;
+		oxyText.enabled = true;
+		oxy.enabled = true;
 		enabled = false;
 		SetBattery (100);
 		player.GetComponent<PlayerManager>().Start();
@@ -60,6 +64,8 @@ public class HUDManager : MonoBehaviour {
 		health.enabled = false;
 		battery.enabled = false;
 		crosshairs.enabled = false;
+		oxyText.enabled = false;
+		oxy.enabled = false;
 		player.GetComponent<PlayerManager>().disable();
 	}
 
@@ -69,6 +75,10 @@ public class HUDManager : MonoBehaviour {
 
 	public static void SetBattery(int battery){
 				instance.batteryText.text = (battery.ToString () + "%");
+		}
+
+	public static void SetOxy(int oxy) {
+				instance.oxyText.text = (oxy.ToString () + "%");
 		}
 
 	public static void SetAmmo (int rounds) {

@@ -36,7 +36,7 @@ public class MonsterAI : MonoBehaviour {
 	int attackDelay = 33;
 	int attackTimer;
 	int attackDamage = 4;
-	float batteryDamage = 2.0f;
+	int batteryDamage = 2;
 
 	// Use this for initialization
 	void Start () {

@@ -15,24 +15,24 @@ public class AnimationManager : MonoBehaviour {
 	void Start () {
 		anim = Animations.Idle;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if (PlayerManager.enabled) {
+		if (PlayerManager.canMove) {
 			string w = null;
 			if (PlayerManager.wep == PlayerManager.Weapons.Pistol) w = "Pistol";
 			else if (PlayerManager.wep == PlayerManager.Weapons.Submachine) w = "Submachine";
 			else if (PlayerManager.wep == PlayerManager.Weapons.Sword) w = "Sword";
-			
+
 			if (!transform.GetChild(1).animation.isPlaying)
 				anim = Animations.Idle;
-				
+
 			if (CombatSystem.attacking) {
 					if (anim != Animations.Attack) {
 						if ((((PlayerManager.wep == PlayerManager.Weapons.Pistol)
 							||(PlayerManager.wep == PlayerManager.Weapons.Submachine))
 							&&(PlayerManager.ammo > 0))
-						   
+
 							||(PlayerManager.wep == PlayerManager.Weapons.Sword)) {
 								transform.GetChild(1).animation.Play("Attack" + w);
 								anim = Animations.Attack;
@@ -45,14 +45,14 @@ public class AnimationManager : MonoBehaviour {
 					}
 				}
 			}
-			
+
 			else if ((Input.GetAxis("Vertical") > .01)&&(anim != Animations.Attack)) {
 				transform.GetChild(1).animation.Play("Running" + w);
 				anim = Animations.Running;
 			}
-			
+
 			if (anim == Animations.Idle)
-				transform.GetChild(1).animation.Play("Idle" + w);			
+				transform.GetChild(1).animation.Play("Idle" + w);
 		}
 	}
 }

@@ -8,6 +8,7 @@ public class MonsterAI : MonoBehaviour {
 	Animator animator;
 	Transform _player;
 	PlayerManager _playerManager;
+	GameObject ragdoll;
 
 	Transform _eyes;
 	Transform _playerMarker;
@@ -24,7 +25,7 @@ public class MonsterAI : MonoBehaviour {
 	float wanderSpeed = 4f;
 	float chaseSpeed = 8f;
 	bool chasing;
-	
+
 	int health;
 
 	bool change;
@@ -41,11 +42,11 @@ public class MonsterAI : MonoBehaviour {
 	void Start () {
 		_controller = GetComponent<CharacterController>();
 		_transform = GetComponent<Transform> ();
-		animator = GetComponent<Animator>();
 		_player = GameObject.Find ("Player").GetComponent<Transform> ();
 		_playerManager = GameObject.Find ("Player").GetComponent<PlayerManager> ();
 		_eyes = _transform.Find ("Eyes");
 		_playerMarker = _player.Find ("PlayerMarker");
+		animator = GetComponent<Animator>();
 		chasing = false;
 		speed = wanderSpeed;
 		attackTimer = attackDelay - 11;
@@ -66,8 +67,8 @@ public class MonsterAI : MonoBehaviour {
 		if (_transform.position.y < -5) {
 			DestroyImmediate (this.gameObject);
 		}
-		
-		if (chasing) {
+
+		if (chasing && _transform != null) {
 			if ((_player.position - _transform.position).sqrMagnitude < attackRange) {
 				animator.SetBool ("dojump", true);
 				if(attackTimer > attackDelay){
@@ -115,7 +116,7 @@ public class MonsterAI : MonoBehaviour {
 				var angles = _transform.rotation.eulerAngles;
 				_transform.rotation = Quaternion.Euler (angles.x, Mathf.SmoothDampAngle (angles.y, newRotation.y, ref velocity, minTime, maxRotSpeed), angles.z);
 				animator.SetFloat ("speed", speed);
-			} 
+			}
 			else {
 				animator.SetFloat ("speed", 0f);
 			}
@@ -140,10 +141,12 @@ public class MonsterAI : MonoBehaviour {
 			break;
 		}
 	}
-	
+
 	public void damage(int damage) {
 		health -= damage;
 		if (health <= 0)
+			Debug.Log(ragdoll + " " + ragdoll.name);
+			Instantiate(ragdoll, _transform.localPosition, Quaternion.identity);
 			Destroy(transform.gameObject);
 	}
 }

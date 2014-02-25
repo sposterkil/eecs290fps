@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour {
 	public Transform sword;
 	public Transform Flashlight;
 
-	public static bool enabled;
+	public static bool canMove;
 
 	// Use this for initialization
 	public void Start () {
@@ -34,17 +34,17 @@ public class PlayerManager : MonoBehaviour {
 	}
 
 	public void enable() {
-		enabled = true;
+		canMove = true;
 		CharacterMotor.Enable();
 	}
 
 	public void disable() {
-		enabled = false;
+		canMove = false;
 		CharacterMotor.Disable();
 	}
 
 	public void SetWeapon(Weapons w){
-		if (enabled) {
+		if (canMove) {
 			switch (w) {
 				case Weapons.Pistol:
 					pistol.active = true;
@@ -65,7 +65,7 @@ public class PlayerManager : MonoBehaviour {
 
 	// Update is called once per frame
 	 void Update () {
-		if (enabled) {
+		if (canMove) {
 			HUDManager.SetBattery ((int)battery);
 			HUDManager.SetHealth (health);
 			HUDManager.SetAmmo (ammo);

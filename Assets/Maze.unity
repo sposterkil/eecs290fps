@@ -921,6 +921,7 @@ MonoBehaviour:
   current: 0
   health: 0
   battery: 0
+  oxy: 0
   pistol: {fileID: 1931344961}
   submachine: {fileID: 587797792}
   sword: {fileID: 763625751}
@@ -2287,10 +2288,12 @@ MonoBehaviour:
   healthText: {fileID: 555201640}
   ammoText: {fileID: 23986059}
   batteryText: {fileID: 9705925}
+  oxyText: {fileID: 0}
   ammo: {fileID: 748609907}
   health: {fileID: 1105277794}
   battery: {fileID: 1025721230}
   crosshairs: {fileID: 863866169}
+  oxy: {fileID: 0}
   player: {fileID: 465855852}
 --- !u!1 &1921381193
 GameObject:

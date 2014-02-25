@@ -218,8 +218,7 @@ public class GridCreator : MonoBehaviour {
 						}
 						cell.renderer.material = floorTexture;
 						if(MonstersSpawned < Monsters){
-							Transform newMonster;
-							newMonster = (Transform)Instantiate (MonsterPrefab, new Vector3(Random.Range (0, dimensions), 7f, Random.Range (0, dimensions)), Quaternion.identity);
+							Instantiate(MonsterPrefab, new Vector3(Random.Range (0, dimensions), 7f, Random.Range (0, dimensions)), Quaternion.identity);
 							MonstersSpawned++;
 						}
 					}

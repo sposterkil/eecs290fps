@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour {
 	public int health;
 	public float battery;
 	public static int ammo;
+	public int oxy;
 
 	public Transform pistol;
 	public Transform submachine;
@@ -26,11 +27,14 @@ public class PlayerManager : MonoBehaviour {
 		current = 0;
 		health = 100;
 		battery = 100;
+		oxy = 100;
 		ammo = 60;
 		HUDManager.SetBattery ((int)battery);
 		HUDManager.SetHealth (health);
 		HUDManager.SetAmmo (ammo);
+		HUDManager.SetOxy (oxy);
 		disable();
+
 	}
 
 	public void enable() {

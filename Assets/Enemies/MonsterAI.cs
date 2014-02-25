@@ -8,7 +8,7 @@ public class MonsterAI : MonoBehaviour {
 	Animator animator;
 	Transform _player;
 	PlayerManager _playerManager;
-	GameObject ragdoll;
+	public GameObject ragdoll;
 
 	Transform _eyes;
 	Transform _playerMarker;
@@ -144,7 +144,10 @@ public class MonsterAI : MonoBehaviour {
 
 	public void damage(int damage) {
 		health -= damage;
-		if (health <= 0)
-			Destroy(transform.gameObject);
+		if (health <= 0) {
+			DestroyObject (this.gameObject);
+			Debug.Log (ragdoll + " " + ragdoll.name);
+			Instantiate (ragdoll, _transform.localPosition, Quaternion.identity);
+		}
 	}
 }

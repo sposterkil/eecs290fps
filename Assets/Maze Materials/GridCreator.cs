@@ -246,7 +246,7 @@ public class GridCreator : MonoBehaviour {
 
 	void SpawnPickups(Transform cell){
 		if (Random.Range(0, 100) <= 20){
-			switch(Random.Range(0, 2) % 3){
+			switch(Random.Range(0, 3) % 3){
 				case 0:
 					Instantiate(AmmoPickup, cell.localPosition + Vector3.up, Quaternion.identity);
 					break;

@@ -5,10 +5,10 @@ public class PlayerManager : MonoBehaviour {
 	public enum Weapons {Pistol, Submachine, Sword};
 	public static Weapons wep;
 	public int current;
-	public int health;
+	public float health;
 	public float battery;
 	public static int ammo;
-	public int oxy;
+	public float oxy;
 
 	public Transform pistol;
 	public Transform submachine;
@@ -28,11 +28,11 @@ public class PlayerManager : MonoBehaviour {
 		health = 100;
 		battery = 100;
 		oxy = 100;
-		ammo = 60;
+		ammo = 30;
 		HUDManager.SetBattery ((int)battery);
-		HUDManager.SetHealth (health);
+		HUDManager.SetHealth ((int)health);
 		HUDManager.SetAmmo (ammo);
-		HUDManager.SetOxy (oxy);
+		HUDManager.SetOxy ((int)oxy);
 		disable();
 
 	}
@@ -71,8 +71,9 @@ public class PlayerManager : MonoBehaviour {
 	 void Update () {
 		if (canMove) {
 			HUDManager.SetBattery ((int)battery);
-			HUDManager.SetHealth (health);
+			HUDManager.SetHealth ((int)health);
 			HUDManager.SetAmmo (ammo);
+			HUDManager.SetOxy ((int)oxy);
 
 			if (Input.GetAxis("Scroll") != 0) {
 				transform.GetChild(1).animation.Stop();
@@ -115,6 +116,13 @@ public class PlayerManager : MonoBehaviour {
 			else{
 				Flashlight.active = false;
 			}
+			if (oxy > 0) { // have oxygen
+				oxy -= 2 * Time.deltaTime;
+			}			
+			else {// ran out of oxygen
+				health -= (2 * Time.deltaTime);
+			}
+
 		}
 		else {
 			transform.GetChild(1).animation.Stop();

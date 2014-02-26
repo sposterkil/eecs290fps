@@ -22,7 +22,7 @@ public class Pickups : MonoBehaviour {
             switch(this.tag){
                 case "AmmoPickup":
                     Debug.Log("Picked up Ammo");
-                    PlayerManager.ammo += 10;
+                    PlayerManager.ammo = Mathf.Min (40, PlayerManager.ammo + 5);
                     break;
                 case "BattPickup":
                     Debug.Log("Picked up Battery");

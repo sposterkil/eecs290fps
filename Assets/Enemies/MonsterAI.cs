@@ -71,7 +71,8 @@ public class MonsterAI : MonoBehaviour {
 	int batteryDamage = 2;
 
 	/**
-	 * On initialization, sets the monster's various variables to their defaults and acquires transforms used in the Update method. 
+	 * On initialization, sets the monster's various variables to their defaults and acquires transforms used in the Update method.
+	 * @return - nothing.
 	 */
 	void Start () {
 		_controller = GetComponent<CharacterController>();
@@ -95,6 +96,12 @@ public class MonsterAI : MonoBehaviour {
 
 	/**
 	 * Controls how the Monster behaves in the gameworld.
+	 * Aggroes on the player if its health is below 100 (i.e., it has been damaged by the player) or if the player is in its line of sight.
+	 * Deletes it if it falls below a Y position of -5 (i.e., it has fallen out of the map)
+	 * Stops temporarily to attack the player if it is aggroed and is within attacking range of the player.
+	 * deals damage when it hits the peak of the hopping animation used for attacking.
+	 * Attempts to walk in a straight line to random locations in the maze if not aggroed.
+	 * @return - nothing.
 	 */
 	void Update () {
 		if (health < 100 && !chasing) {
@@ -174,6 +181,7 @@ public class MonsterAI : MonoBehaviour {
 
 	/**
 	 * Decides whether or not the Monster should try to path to a new location.
+	 * @return - nothing.
 	 */
 	void NewTarget(){
 		int choice = Random.Range (0, 3);

@@ -209,25 +209,30 @@ public class GridCreator : MonoBehaviour {
 				foreach (Transform cell in Grid) {
 					// Removes displayed weight
 					cell.GetComponentInChildren<TextMesh>().renderer.enabled = false;
-
+					// If the cell we're looking at is a wall...
 					if (!PathCells.Contains(cell)) {
-						// Make the maze 3D
+						// ...Make the maze 3D...
 						cell.localScale += new Vector3(0f, 5f, 0f);
 						cell.localPosition += new Vector3(0f, 3.5f, 0f);
+						// ...And give it the wall texture.
 						cell.renderer.material = wallTexture;
 					}
+					// And if it's a floor cell...
 					else {
+						// ...Spawn pickups on it...
 						if (cell != Grid[0,0] && cell != end){
 							SpawnPickups(cell);
 						}
+						// ...Give it the floor texture...
 						cell.renderer.material = floorTexture;
+						// And spawn monsters on it if we're not already capped.
 						if(MonstersSpawned < Monsters){
 							Instantiate(MonsterPrefab, new Vector3(Random.Range (0, dimensions), 7f, Random.Range (0, dimensions)), Quaternion.identity);
 							MonstersSpawned++;
 						}
 					}
 				}
-				// Give the start and exit some special textures
+				// Give the start and exit special textures
 				Grid[0, 0].renderer.material = startTexture;
 				end.renderer.material = endTexture;
 				return;
@@ -248,8 +253,13 @@ public class GridCreator : MonoBehaviour {
 		Invoke("FindNext", 0);
 	}
 
+	/*
+	 * Randomly spawns pickups on a given cell.  15% chance to spawn one of 4
+	 * pickups, chosen randomly.
+	 * @param cell The cell to spawn the pickup on
+	 */
 	void SpawnPickups(Transform cell){
-		if (Random.Range(0, 100) <= 100){
+		if (Random.Range(0, 100) <= 15){
 			Transform pickup = null;
 			switch(Random.Range(0, 3)){
 				case 0:
@@ -274,6 +284,9 @@ public class GridCreator : MonoBehaviour {
 		}
 	}
 
+	/*
+	 * Creates walls surrouncing the maze.  No arguments, no return value.
+	 */
 	void BuildWalls() {
 		//Wall 1
 		wall1 = (Transform)Instantiate(WallPrefab, new Vector3(-4.5f, 3.5f, (Size.z / 2f) * 6f - 3f), Quaternion.identity);

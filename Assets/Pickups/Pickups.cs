@@ -4,23 +4,23 @@ using System.Collections;
 public class Pickups : MonoBehaviour {
     public PlayerManager player;  // the player
     public Vector3 rotationVelocity;  // the rotation of pickups
-
-
-	// Use this for initialization
+	
 	void Start () {
         player = GameObject.FindWithTag("Player").GetComponent<PlayerManager>();  // get the player
 	}
-
-	// Update is called once per frame
+	
 	void Update () {
         transform.Rotate(rotationVelocity * Time.deltaTime);  // rotate the pickups about
 	}
 
-	// takes a collider and grabs the tag of the object that was triggered to decide behavior
+	/**
+	 * Handles touching pickups and their status changes
+	 * @param other The collider that the player is interacting with of the object to trigger
+	 */
     void OnTriggerEnter(Collider other){  
         if (other.tag == "Player"){
             Debug.Log("Entered Trigger " + this.tag);
-            switch(this.tag){
+            switch(this.tag){ // grab tag of the triggered object
                 case "AmmoPickup":
                     Debug.Log("Picked up Ammo");
                     PlayerManager.ammo = Mathf.Min (40, PlayerManager.ammo + 5); // max ammo at 40, incriment 5

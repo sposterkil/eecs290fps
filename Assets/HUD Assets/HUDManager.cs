@@ -34,6 +34,9 @@ public class HUDManager : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * Starts the game, turns off the start menu turns on the hud
+	 */
 	private void GameStart () {
 		gameOverText.enabled = false;
 		instructionText.enabled = false;
@@ -53,6 +56,9 @@ public class HUDManager : MonoBehaviour {
 		player.GetComponent<PlayerManager>().enable();
 	}
 
+	/**
+	 * This triggers the hud to display game over
+	 */
 	private void GameOver () {
 		gameOverText.enabled = true;
 		instructionText.enabled = true;
@@ -69,22 +75,34 @@ public class HUDManager : MonoBehaviour {
 		player.GetComponent<PlayerManager>().disable();
 	}
 
-	// setter for the health to the hud
+	/**
+	 * setter for the health to the hud
+	 * @param health The player health to display
+	 */
 	public static void SetHealth(int health){
 				instance.healthText.text = (health.ToString () + "%");
 		}
 
-	// setter for the battery to the hud
+	/**
+	 * setter for the battery to the hud
+	 * @param battery The player battery to display
+	 */
 	public static void SetBattery(int battery){
 				instance.batteryText.text = (battery.ToString () + "%");
 		}
 
-	// setter for the the oxygen to the hud
+	/**
+	 * setter for the oxygen to the hud
+	 * @param oxy The player oxygen level to display
+	 */
 	public static void SetOxy(int oxy) {
 				instance.oxyText.text = (oxy.ToString () + "%");
 		}
 
-	// setter for the ammo to the hud
+	/**
+	 * setter for the ammo to the hud
+	 * @param ammo The player ammo to display
+	 */
 	public static void SetAmmo (int rounds) {
 				instance.ammoText.text = rounds.ToString ();
 		}

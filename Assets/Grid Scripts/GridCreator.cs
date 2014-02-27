@@ -42,7 +42,7 @@ public class GridCreator : MonoBehaviour {
 	private Transform wall3;
 	private Transform wall4;
 
-	private List<Object> allPickups;
+	private List<Transform> allPickups;
 
 	// Use this for initialization
 	void Start () {
@@ -59,6 +59,7 @@ public class GridCreator : MonoBehaviour {
 		SetStart();
 		FindNext();
 		BuildWalls();
+		allPickups = new List<Transform>();
 	}
 
 	// Creates the grid by instantiating provided cell prefabs.
@@ -208,25 +209,30 @@ public class GridCreator : MonoBehaviour {
 				foreach (Transform cell in Grid) {
 					// Removes displayed weight
 					cell.GetComponentInChildren<TextMesh>().renderer.enabled = false;
-
+					// If the cell we're looking at is a wall...
 					if (!PathCells.Contains(cell)) {
-						// Make the maze 3D
+						// ...Make the maze 3D...
 						cell.localScale += new Vector3(0f, 5f, 0f);
 						cell.localPosition += new Vector3(0f, 3.5f, 0f);
+						// ...And give it the wall texture.
 						cell.renderer.material = wallTexture;
 					}
+					// And if it's a floor cell...
 					else {
+						// ...Spawn pickups on it...
 						if (cell != Grid[0,0] && cell != end){
 							SpawnPickups(cell);
 						}
+						// ...Give it the floor texture...
 						cell.renderer.material = floorTexture;
+						// And spawn monsters on it if we're not already capped.
 						if(MonstersSpawned < Monsters){
 							Instantiate(MonsterPrefab, new Vector3(Random.Range (0, dimensions), 7f, Random.Range (0, dimensions)), Quaternion.identity);
 							MonstersSpawned++;
 						}
 					}
 				}
-				// Give the start and exit some special textures
+				// Give the start and exit special textures
 				Grid[0, 0].renderer.material = startTexture;
 				end.renderer.material = endTexture;
 				return;
@@ -247,32 +253,40 @@ public class GridCreator : MonoBehaviour {
 		Invoke("FindNext", 0);
 	}
 
+	/*
+	 * Randomly spawns pickups on a given cell.  15% chance to spawn one of 4
+	 * pickups, chosen randomly.
+	 * @param cell The cell to spawn the pickup on
+	 */
 	void SpawnPickups(Transform cell){
-		if (Random.Range(0, 100) <= 100){
-			Object pickup = null;
-			switch(Random.Range(0, 4) % 4){
+		if (Random.Range(0, 100) <= 15){
+			Transform pickup = null;
+			switch(Random.Range(0, 3)){
 				case 0:
-					pickup = Instantiate(AmmoPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+					pickup = Instantiate(AmmoPickup, cell.localPosition + Vector3.up, Quaternion.identity) as Transform;
 					break;
 				case 1:
-					pickup = Instantiate(HPPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+					pickup = Instantiate(HPPickup, cell.localPosition + Vector3.up, Quaternion.identity) as Transform;
 					break;
 				case 2:
-					pickup = Instantiate(BatteryPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+					pickup = Instantiate(BatteryPickup, cell.localPosition + Vector3.up, Quaternion.identity) as Transform;
 					break;
 				case 3:
-					pickup = Instantiate(OxyPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+					pickup = Instantiate(OxyPickup, cell.localPosition + Vector3.up, Quaternion.identity) as Transform;
 					break;
 				default:
 					Debug.Log("Bad spawn attempt");
 					break;
 			}
 			if(pickup != null){
-//				allPickups.Add(pickup);
+				allPickups.Add(pickup);
 			}
 		}
 	}
 
+	/*
+	 * Creates walls surrouncing the maze.  No arguments, no return value.
+	 */
 	void BuildWalls() {
 		//Wall 1
 		wall1 = (Transform)Instantiate(WallPrefab, new Vector3(-4.5f, 3.5f, (Size.z / 2f) * 6f - 3f), Quaternion.identity);
@@ -312,15 +326,15 @@ public class GridCreator : MonoBehaviour {
 				for (int i = 0; i < transform.childCount; i++) {
 					Destroy(transform.GetChild(i).gameObject);
 				}
+				// ...Remove all the pickups
+				foreach (Transform pickup in allPickups) {
+					Destroy(pickup.gameObject);
+				}
+				allPickups.Clear();
 				// And restart the maze
 				player.localPosition = new Vector3(0f, 5f, 0f);
 				Size.Set(Size.x + 5f, Size.y, Size.z + 5f);
 				Start();
-				// TODO: Increment the level counter
-
-				foreach(Object pickup in allPickups){
-					Destroy(pickup);
-				}
 			}
 		}
 	}

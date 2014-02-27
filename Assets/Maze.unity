@@ -1724,6 +1724,7 @@ MonoBehaviour:
   AmmoPickup: {fileID: 400000, guid: f8c34ad58c89e4e8e9d60255aad22436, type: 2}
   BatteryPickup: {fileID: 400002, guid: 9ca571ba2090242e69287cae98f2e8f8, type: 2}
   HPPickup: {fileID: 400000, guid: 02d1a578a95b8422c8fb8d49bf0d7b45, type: 2}
+  OxyPickup: {fileID: 400000, guid: 92207e980f89f8f479e7311b3f4f6c5f, type: 2}
   MonsterPrefab: {fileID: 400128, guid: 748e535a143339042a29011f9352c4c9, type: 2}
   Monsters: 0
   MonstersSpawned: 0

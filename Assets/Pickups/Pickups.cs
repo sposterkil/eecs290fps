@@ -32,6 +32,10 @@ public class Pickups : MonoBehaviour {
                     Debug.Log("Picked up Health");
                     player.health = Mathf.Min(100, player.health + 20);
                     break;
+				case "OxyPickup":
+					Debug.Log ("Picked up Oxygen");
+					player.oxy = Mathf.Min(100, player.health + 20);
+					break;
                 default:
                     Debug.Log("bad trigger");
                     break;

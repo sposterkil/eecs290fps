@@ -29,6 +29,7 @@ public class GridCreator : MonoBehaviour {
 	public Transform AmmoPickup;
 	public Transform BatteryPickup;
 	public Transform HPPickup;
+	public Transform OxyPickup;
 
 	public static float dimensions;
 
@@ -246,7 +247,7 @@ public class GridCreator : MonoBehaviour {
 
 	void SpawnPickups(Transform cell){
 		if (Random.Range(0, 100) <= 20){
-			switch(Random.Range(0, 3) % 3){
+			switch(Random.Range(0, 4) % 4){
 				case 0:
 					Instantiate(AmmoPickup, cell.localPosition + Vector3.up, Quaternion.identity);
 					break;
@@ -255,6 +256,9 @@ public class GridCreator : MonoBehaviour {
 					break;
 				case 2:
 					Instantiate(BatteryPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+					break;
+				case 3:
+					Instantiate(OxyPickup, cell.localPosition + Vector3.up, Quaternion.identity);
 					break;
 				default:
 					Debug.Log("Bad spawn attempt");

@@ -66,6 +66,7 @@ public class MonsterAI : MonoBehaviour {
 	void Update () {
 		if (health < 100 && !chasing) {
 			chasing = true;
+			growl.Play();
 		}
 		if (_transform.position.y < -5) {
 			DestroyImmediate (this.gameObject);

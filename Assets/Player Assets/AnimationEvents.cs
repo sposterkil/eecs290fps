@@ -8,7 +8,7 @@ public class AnimationEvents : MonoBehaviour {
 		Vector3 fwd = transform.TransformDirection(Vector3.forward);
 		int multiplier = 1;
 		
-		if (Input.GetAxis("Sprint") < -.01)
+		if(Input.GetAxis("Sprint") < -.01)
 			multiplier = 2;
 	
 		if ((PlayerManager.wep == PlayerManager.Weapons.Pistol)||(PlayerManager.wep == PlayerManager.Weapons.Submachine)) {

@@ -16,6 +16,10 @@ public class GameEventManager : MonoBehaviour {
 	public static void TriggerGameOver(){
 		if(GameOver != null){
 			GameOver();
+			GameStart = null;
+			GameOver = null;
+			//Sleep(6);
+			Application.LoadLevel (0);
 		}
 	}
 }

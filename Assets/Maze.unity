@@ -864,8 +864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5caa844c97463cb48a8f8c3cf1339e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartBeat: {fileID: 465855856}
-  breathing: {fileID: 1701021527}
   current: 0
   health: 0
   battery: 0
@@ -875,7 +873,6 @@ MonoBehaviour:
   submachine: {fileID: 587797792}
   sword: {fileID: 763625751}
   Flashlight: {fileID: 871769149}
-  beacon: {fileID: 495195541}
 --- !u!114 &465855854
 MonoBehaviour:
   m_ObjectHideFlags: 0

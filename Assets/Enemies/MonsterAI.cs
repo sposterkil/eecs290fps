@@ -3,45 +3,77 @@ using System.Collections;
 
 [RequireComponent (typeof (CharacterController))]
 public class MonsterAI : MonoBehaviour {
+	//The Monster's CharacterController.
 	CharacterController _controller;
+	//The Monster's Transform.
 	Transform _transform;
+	//The Monster's animator
 	Animator animator;
+	//The Player's transform.
 	Transform _player;
+	//The PlayerManager of the Player, used to damage the player.
 	PlayerManager _playerManager;
+	//The ragdoll spawned when the Monster is killed.
 	public GameObject ragdoll;
 
+	//The sound a monster makes when aggroed.
 	public AudioSource growl;
+	//The sound a monster makes when attacking.
 	public AudioSource hit;
 
+	//The empty game object in front of the Monster's face, used to raycast from.
 	Transform _eyes;
+	//The empty game object just above the Player's head, used to raycast to.
 	Transform _playerMarker;
 
+	//The Monster's movement speed
 	float speed;
+	//The pull of gravity on the Monster.
 	float gravity;
+	//The direction the Monster is moving in.
 	Vector3 moveDirection;
 
+	//The Monster's current spot in the maze it is attempting to path to.
 	Vector3 target;
+	//The maximum speed a Monster can rotate at.
 	float maxRotSpeed = 200.0f;
+	//Used to determine rotation speed for smoothdampangle used when turning.
 	float minTime = 0.1f;
+	//Current velocity, used for smoothdampangle.
 	float velocity;
 
+	//The speed a Monster meanders through the maze at.
 	float wanderSpeed = 4f;
+	//The speed a Monster will pursue the player at.
 	float chaseSpeed = 8f;
+	//Whether or not the Monster is pursuing the player.
 	bool chasing;
 
+	//The Monster's health.
 	int health;
 
+	//Whether or not the Monster should try to path to a new location in the Maze.
 	bool change;
+	//The distance a Monster will approach its current pathing point before stopping.
 	float range;
+	//Range that a Monster can attack at.
 	float attackRange = 9f;
+	//Range of the Monster's eyesight, squared.
 	float squareRange = 160f;
 
+	//The frame delay before damage occurs when the monster is attacking. Used to sync damage with the animation.
 	int attackDelay = 33;
+	//The time until the next attack. Used to prevent the monsters from doing their damage every frame, rapidly draining the player's health.
 	int attackTimer;
+	//Damage monsters do to player Health.
 	int attackDamage = 4;
+	//Amount of battery drained by Monster attacks.
 	int batteryDamage = 2;
 
-	// Use this for initialization
+	/**
+	 * On initialization, sets the monster's various variables to their defaults and acquires transforms used in the Update method.
+	 * @return - nothing.
+	 */
 	void Start () {
 		_controller = GetComponent<CharacterController>();
 		_transform = GetComponent<Transform> ();
@@ -62,7 +94,15 @@ public class MonsterAI : MonoBehaviour {
 		health = 100;
 	}
 
-	// Update is called once per frame
+	/**
+	 * Controls how the Monster behaves in the gameworld.
+	 * Aggroes on the player if its health is below 100 (i.e., it has been damaged by the player) or if the player is in its line of sight.
+	 * Deletes it if it falls below a Y position of -5 (i.e., it has fallen out of the map)
+	 * Stops temporarily to attack the player if it is aggroed and is within attacking range of the player.
+	 * deals damage when it hits the peak of the hopping animation used for attacking.
+	 * Attempts to walk in a straight line to random locations in the maze if not aggroed.
+	 * @return - nothing.
+	 */
 	void Update () {
 		if (health < 100 && !chasing) {
 			chasing = true;
@@ -131,10 +171,18 @@ public class MonsterAI : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * Acquires a new location in the Maze for the Monster to attempt to walk to.
+	 * @return - The Vector3 corresponding to the new position.
+	 */
 	Vector3 GetTarget(){
 		return new Vector3 (Random.Range (0, GridCreator.dimensions), 0, Random.Range (0, GridCreator.dimensions));
 	}
 
+	/**
+	 * Decides whether or not the Monster should try to path to a new location.
+	 * @return - nothing.
+	 */
 	void NewTarget(){
 		int choice = Random.Range (0, 3);
 		switch (choice) {
@@ -150,6 +198,11 @@ public class MonsterAI : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * Damages the monster, and replaces it with a ragdoll if the damage reduces its health to zero or less.
+	 * @damage - the damage dealth by the incoming attack.
+	 * @return - returns nothing.
+	 */
 	public void damage(int damage) {
 		health -= damage;
 		if (health <= 0) {

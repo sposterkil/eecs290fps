@@ -214,7 +214,7 @@ public class GridCreator : MonoBehaviour {
 						cell.renderer.material = wallTexture;
 					}
 					else {
-						if (cell != Grid[0,0]){
+						if (cell != Grid[0,0] && cell != end){
 							SpawnPickups(cell);
 						}
 						cell.renderer.material = floorTexture;

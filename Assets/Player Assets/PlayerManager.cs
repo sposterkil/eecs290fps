@@ -4,11 +4,13 @@ using System.Collections;
 public class PlayerManager : MonoBehaviour {
 	public enum Weapons {Pistol, Submachine, Sword};
 	public static Weapons wep;
+	public static int ammo;
+
 	public int current;
 	public float health;
 	public float battery;
-	public static int ammo;
 	public float oxy;
+	public bool sprinting;
 
 	public Transform pistol;
 	public Transform submachine;
@@ -19,22 +21,25 @@ public class PlayerManager : MonoBehaviour {
 
 	// Use this for initialization
 	public void Start () {
+		// Start with the Pistol equipped
 		wep = Weapons.Pistol;
 		Flashlight.active = true;
 		pistol.active = true;
 		submachine.active = false;
 		sword.active = false;
 		current = 0;
+		// Initialize player stats
 		health = 100;
 		battery = 100;
 		oxy = 100;
 		ammo = 30;
+		// Tie them to the HUD
 		HUDManager.SetBattery ((int)battery);
 		HUDManager.SetHealth ((int)health);
 		HUDManager.SetAmmo (ammo);
 		HUDManager.SetOxy ((int)oxy);
+		// Disable movement until game Start
 		disable();
-
 	}
 
 	public void enable() {
@@ -47,6 +52,7 @@ public class PlayerManager : MonoBehaviour {
 		CharacterMotor.Disable();
 	}
 
+	// Takes a weapon from the Weapons enum and sets it as the current weapon
 	public void SetWeapon(Weapons w){
 		if (canMove) {
 			switch (w) {
@@ -67,24 +73,52 @@ public class PlayerManager : MonoBehaviour {
 		}
 	}
 
+	void HandleBattery(){
+		if (battery > 0) {
+			battery -= 1 * Time.deltaTime / 2;
+		}
+		else{
+			Flashlight.active = false;
+		}
+	}
+
+	void HandleOxygen(){
+		if (oxy > 0) { // have oxygen
+			if (sprinting){
+				oxy -= 1 * Time.deltaTime;
+			}
+			else{
+				oxy -= 1 * Time.deltaTime / 5;
+			}
+		}
+		else {// ran out of oxygen
+			health -= (2 * Time.deltaTime);
+		}
+	}
+
 	// Update is called once per frame
-	 void Update () {
+	void Update () {
 		if (canMove) {
+			// Update the HUD
 			HUDManager.SetBattery ((int)battery);
 			HUDManager.SetHealth ((int)health);
 			HUDManager.SetAmmo (ammo);
 			HUDManager.SetOxy ((int)oxy);
 
+
 			if (Input.GetAxis("Scroll") != 0) {
+				// Get rid of our current weapon
 				transform.GetChild(1).animation.Stop();
 				pistol.active = false;
 				submachine.active = false;
 				sword.active = false;
+				// Switch up or down, depending on scroll direction
 				if (Input.GetAxis("Scroll") < -.01)
 					current += 2;
 				else if (Input.GetAxis("Scroll") > .01)
 					current += 1;
 			}
+			// Choose the new weapon
 			current %= 3;
 			switch (current) {
 				case 0:
@@ -109,24 +143,12 @@ public class PlayerManager : MonoBehaviour {
 				GameEventManager.TriggerGameOver ();
 				Application.LoadLevel (0);
 			}
-
-			if (battery > 0) {
-				battery -= 1 * Time.deltaTime / 2;
-			}
-			else{
-				Flashlight.active = false;
-			}
-			if (oxy > 0) { // have oxygen
-				oxy -= 2 * Time.deltaTime;
-			}			
-			else {// ran out of oxygen
-				health -= (2 * Time.deltaTime);
-			}
-
 		}
 		else {
 			transform.GetChild(1).animation.Stop();
 			disable();
 		}
+		HandleBattery();
+		HandleOxygen();
 	}
 }

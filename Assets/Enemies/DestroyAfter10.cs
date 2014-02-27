@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DisappearWhenUnseen : MonoBehaviour {
+public class DestroyAfter10 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

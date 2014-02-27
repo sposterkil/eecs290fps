@@ -865,8 +865,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5caa844c97463cb48a8f8c3cf1339e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartBeat: {fileID: 465855856}
-  breathing: {fileID: 465855857}
+  heartBeat: {fileID: 465855857}
+  breathing: {fileID: 465855856}
   current: 0
   health: 0
   battery: 0
@@ -1035,7 +1035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &495195537
 Light:
   m_ObjectHideFlags: 0

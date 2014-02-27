@@ -5,6 +5,8 @@ public class PlayerManager : MonoBehaviour {
 	public enum Weapons {Pistol, Submachine, Sword};
 	public static Weapons wep;
 	public static int ammo;
+	public AudioSource heartBeat;
+	public AudioSource breathing;
 
 	public int current;
 	public float health;
@@ -17,11 +19,14 @@ public class PlayerManager : MonoBehaviour {
 	public Transform sword;
 	public Transform Flashlight;
 
+	public Transform beacon;
+
 	public static bool canMove;
 
 	// Use this for initialization
 	public void Start () {
 		// Start with the Pistol equipped
+		beacon.active = false;
 		wep = Weapons.Pistol;
 		Flashlight.active = true;
 		pistol.active = true;
@@ -40,6 +45,10 @@ public class PlayerManager : MonoBehaviour {
 		HUDManager.SetOxy ((int)oxy);
 		// Disable movement until game Start
 		disable();
+		heartBeat.volume = 1f;
+		breathing.volume = 1f;
+		heartBeat.Play ();
+		breathing.Play ();
 	}
 
 	public void enable() {
@@ -88,7 +97,7 @@ public class PlayerManager : MonoBehaviour {
 				oxy -= 1 * Time.deltaTime;
 			}
 			else{
-				oxy -= 1 * Time.deltaTime / 5;
+				oxy -= 1 * Time.deltaTime /5;
 			}
 		}
 		else {// ran out of oxygen
@@ -104,7 +113,8 @@ public class PlayerManager : MonoBehaviour {
 			HUDManager.SetHealth ((int)health);
 			HUDManager.SetAmmo (ammo);
 			HUDManager.SetOxy ((int)oxy);
-
+			heartBeat.volume = (1f - (health/100));  //heart sounds
+			breathing.volume = (1f - (oxy/100));
 
 			if (Input.GetAxis("Scroll") != 0) {
 				// Get rid of our current weapon
@@ -143,6 +153,16 @@ public class PlayerManager : MonoBehaviour {
 				GameEventManager.TriggerGameOver ();
 				Application.LoadLevel (0);
 			}
+
+			if (Input.GetKeyDown ("q")) {
+				Debug.Log ("Q Button was pressed");
+				Object light;
+				light = Object.Instantiate(beacon, Camera.main.transform.forward*2, Quaternion.identity);
+			}
+		
+
+
+
 		}
 		else {
 			transform.GetChild(1).animation.Stop();
@@ -150,5 +170,5 @@ public class PlayerManager : MonoBehaviour {
 		}
 		HandleBattery();
 		HandleOxygen();
-	}
+	}	
 }

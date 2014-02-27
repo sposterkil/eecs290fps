@@ -10,6 +10,9 @@ public class MonsterAI : MonoBehaviour {
 	PlayerManager _playerManager;
 	public GameObject ragdoll;
 
+	public AudioSource growl;
+	public AudioSource hit;
+
 	Transform _eyes;
 	Transform _playerMarker;
 
@@ -73,6 +76,7 @@ public class MonsterAI : MonoBehaviour {
 				animator.SetBool ("dojump", true);
 				if(attackTimer > attackDelay){
 					_playerManager.health -= attackDamage;
+					hit.Play();
 					if(_playerManager.battery >= batteryDamage){
 						_playerManager.battery -= batteryDamage;
 					}
@@ -104,6 +108,7 @@ public class MonsterAI : MonoBehaviour {
 				if(!Physics.Linecast (_eyes.position, _playerMarker.position)){
 					chasing = true;
 					speed = chaseSpeed;
+					growl.Play();
 				}
 			}
 			if (change) {

@@ -30,10 +30,6 @@ public class GridCreator : MonoBehaviour {
 	public Transform BatteryPickup;
 	public Transform HPPickup;
 	public Transform OxyPickup;
-<<<<<<< HEAD
-=======
-
->>>>>>> 97acc998d24744f80723a4ad07289ec809eecba6
 
 	public static float dimensions;
 
@@ -272,7 +268,7 @@ public class GridCreator : MonoBehaviour {
 					break;
 			}
 			if(pickup != null){
-				allPickups.Add(pickup);
+//				allPickups.Add(pickup);
 			}
 		}
 	}

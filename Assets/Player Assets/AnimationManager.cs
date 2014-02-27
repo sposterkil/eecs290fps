@@ -27,6 +27,9 @@ public class AnimationManager : MonoBehaviour {
 			if (!transform.GetChild(1).animation.isPlaying)
 				anim = Animations.Idle;
 
+
+			
+
 			if (CombatSystem.attacking) {
 					if (anim != Animations.Attack) {
 						if ((((PlayerManager.wep == PlayerManager.Weapons.Pistol)
@@ -49,6 +52,7 @@ public class AnimationManager : MonoBehaviour {
 			else if ((Input.GetAxis("Vertical") > .01)&&(anim != Animations.Attack)) {
 				transform.GetChild(1).animation.Play("Running" + w);
 				anim = Animations.Running;
+	
 			}
 
 			if (anim == Animations.Idle)

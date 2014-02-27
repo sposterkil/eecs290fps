@@ -1,10 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Pickups\Pickups.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Enemies\MonsterAI.cs">
     <Files>
-      <File FileName="Assets\Grid Scripts\GridCreator.cs" Line="265" Column="12" />
-      <File FileName="Assets\Player Assets\PlayerManager.cs" Line="86" Column="19" />
-      <File FileName="Assets\Pickups\Pickups.cs" Line="18" Column="2" />
+      <File FileName="Assets\Player Assets\PlayerManager.cs" Line="50" Column="4" />
+      <File FileName="Assets\HUD Assets\HUDManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Pickups\Pickups.cs" Line="22" Column="30" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\CharacterMotor.js" Line="21" Column="1" />
+      <File FileName="Assets\Player Assets\AnimationManager.cs" Line="14" Column="32" />
+      <File FileName="Assets\Grid Scripts\GridCreator.cs" Line="271" Column="3" />
+      <File FileName="Assets\Enemies\MonsterAI.cs" Line="81" Column="47" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

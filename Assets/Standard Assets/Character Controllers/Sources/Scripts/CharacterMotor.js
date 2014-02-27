@@ -516,6 +516,10 @@ private function GetDesiredHorizontalVelocity () {
 		var movementSlopeAngle = Mathf.Asin(movement.velocity.normalized.y)  * Mathf.Rad2Deg;
 		maxSpeed *= movement.slopeSpeedMultiplier.Evaluate(movementSlopeAngle);
 	}
+	if (Input.GetAxis("Sprint") > .01)
+		maxSpeed *= 1.5;
+	else if (Input.GetAxis("Sprint") < -.01)
+		maxSpeed *= 0.3;
 	return tr.TransformDirection(desiredLocalDirection * maxSpeed);
 }
 

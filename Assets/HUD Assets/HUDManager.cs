@@ -3,12 +3,12 @@ using System.Collections;
 
 public class HUDManager : MonoBehaviour {
 
-	public GUIText gameOverText, instructionText, titleText, 
-	                        healthText, ammoText, batteryText, oxyText;
-	public GUITexture ammo, health, battery, crosshairs, oxy;
+	public GUIText gameOverText, instructionText, titleText, // title screen texts
+	                        healthText, ammoText, batteryText, oxyText; // hud texts
+	public GUITexture ammo, health, battery, crosshairs, oxy; // hud icons
 	private static HUDManager instance;
 	
-	public Transform player;
+	public Transform player; // the player
 
 	// Use this for initialization
 	void Start () {
@@ -29,7 +29,7 @@ public class HUDManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetButtonDown("Jump")) {
+		if (Input.GetButtonDown("Jump")) {  //start the game
 			GameEventManager.TriggerGameStart();
 		}
 	}
@@ -69,18 +69,22 @@ public class HUDManager : MonoBehaviour {
 		player.GetComponent<PlayerManager>().disable();
 	}
 
+	// setter for the health to the hud
 	public static void SetHealth(int health){
 				instance.healthText.text = (health.ToString () + "%");
 		}
 
+	// setter for the battery to the hud
 	public static void SetBattery(int battery){
 				instance.batteryText.text = (battery.ToString () + "%");
 		}
 
+	// setter for the the oxygen to the hud
 	public static void SetOxy(int oxy) {
 				instance.oxyText.text = (oxy.ToString () + "%");
 		}
 
+	// setter for the ammo to the hud
 	public static void SetAmmo (int rounds) {
 				instance.ammoText.text = rounds.ToString ();
 		}

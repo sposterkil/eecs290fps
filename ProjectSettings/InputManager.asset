@@ -56,12 +56,12 @@ InputManager:
     m_Name: Sprint
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: left ctrl
+    negativeButton: mouse 1
     positiveButton: left shift
     altNegativeButton: 
-    altPositiveButton: mouse 1
+    altPositiveButton: 
     gravity: 1000
-    dead: .00100000005
+    dead: 0
     sensitivity: 1000
     snap: 0
     invert: 0

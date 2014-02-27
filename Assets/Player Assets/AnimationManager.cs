@@ -4,7 +4,7 @@ using System.Collections;
 public class AnimationManager : MonoBehaviour {
 	int count;
 	enum Weapons {Pistol, Submachine, Sword};
-	enum Animations {Attack, Idle, Running};
+	enum Animations {Attack, Idle, Running, Sprinting};
 	Weapons wep;
 	Animations anim;
 	public AudioSource pistolShot;
@@ -27,9 +27,6 @@ public class AnimationManager : MonoBehaviour {
 			if (!transform.GetChild(1).animation.isPlaying)
 				anim = Animations.Idle;
 
-
-			
-
 			if (CombatSystem.attacking) {
 					if (anim != Animations.Attack) {
 						if ((((PlayerManager.wep == PlayerManager.Weapons.Pistol)
@@ -48,11 +45,23 @@ public class AnimationManager : MonoBehaviour {
 					}
 				}
 			}
-
-			else if ((Input.GetAxis("Vertical") > .01)&&(anim != Animations.Attack)) {
-				transform.GetChild(1).animation.Play("Running" + w);
-				anim = Animations.Running;
-	
+			
+			else if (anim != Animations.Attack) {
+				bool forward = Input.GetAxis("Vertical") > .01;
+				if (Input.GetAxis("Sprint") > .01) {
+					if (forward) {
+						transform.GetChild(1).animation.Play("Sprinting" + w);
+						anim = Animations.Sprinting;
+					}
+					else {
+						transform.GetChild(1).animation.Play("Running" + w);
+						anim = Animations.Running;
+					}
+				}
+				else if ((forward)&&!(Input.GetAxis("Sprint") < -.01)) {
+					transform.GetChild(1).animation.Play("Running" + w);
+					anim = Animations.Running;
+				}
 			}
 
 			if (anim == Animations.Idle)

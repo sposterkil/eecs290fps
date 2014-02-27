@@ -29,6 +29,8 @@ public class GridCreator : MonoBehaviour {
 	public Transform AmmoPickup;
 	public Transform BatteryPickup;
 	public Transform HPPickup;
+	public Transform OxyPickup;
+
 
 	public static float dimensions;
 
@@ -40,6 +42,8 @@ public class GridCreator : MonoBehaviour {
 	private Transform wall2;
 	private Transform wall3;
 	private Transform wall4;
+
+	private List<Object> allPickups;
 
 	// Use this for initialization
 	void Start () {
@@ -245,20 +249,27 @@ public class GridCreator : MonoBehaviour {
 	}
 
 	void SpawnPickups(Transform cell){
-		if (Random.Range(0, 100) <= 20){
-			switch(Random.Range(0, 3) % 3){
+		if (Random.Range(0, 100) <= 100){
+			Object pickup = null;
+			switch(Random.Range(0, 4) % 4){
 				case 0:
-					Instantiate(AmmoPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+					pickup = Instantiate(AmmoPickup, cell.localPosition + Vector3.up, Quaternion.identity);
 					break;
 				case 1:
-					Instantiate(HPPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+					pickup = Instantiate(HPPickup, cell.localPosition + Vector3.up, Quaternion.identity);
 					break;
 				case 2:
-					Instantiate(BatteryPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+					pickup = Instantiate(BatteryPickup, cell.localPosition + Vector3.up, Quaternion.identity);
+					break;
+				case 3:
+					pickup = Instantiate(OxyPickup, cell.localPosition + Vector3.up, Quaternion.identity);
 					break;
 				default:
 					Debug.Log("Bad spawn attempt");
 					break;
+			}
+			if(pickup != null){
+				allPickups.Add(pickup);
 			}
 		}
 	}
@@ -307,6 +318,10 @@ public class GridCreator : MonoBehaviour {
 				Size.Set(Size.x + 5f, Size.y, Size.z + 5f);
 				Start();
 				// TODO: Increment the level counter
+
+				foreach(Object pickup in allPickups){
+					Destroy(pickup);
+				}
 			}
 		}
 	}

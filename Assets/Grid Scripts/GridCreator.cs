@@ -328,7 +328,9 @@ public class GridCreator : MonoBehaviour {
 				}
 				// ...Remove all the pickups
 				foreach (Transform pickup in allPickups) {
-					Destroy(pickup.gameObject);
+					if (pickup.gameObject != null){
+						Destroy(pickup.gameObject);
+					}
 				}
 				allPickups.Clear();
 				// And restart the maze

@@ -19,14 +19,14 @@ public class PlayerManager : MonoBehaviour {
 	public Transform sword;
 	public Transform Flashlight;
 
-	public Transform beacon;
+	// public Transform beacon;
 
 	public static bool canMove;
 
 	// Use this for initialization
 	public void Start () {
 		// Start with the Pistol equipped
-		beacon.active = false;
+		// beacon.active = false;
 		wep = Weapons.Pistol;
 		Flashlight.active = true;
 		pistol.active = true;
@@ -157,9 +157,9 @@ public class PlayerManager : MonoBehaviour {
 			if (Input.GetKeyDown ("q")) {
 				Debug.Log ("Q Button was pressed");
 				Object light;
-				light = Object.Instantiate(beacon, Camera.main.transform.forward*2, Quaternion.identity);
+				// light = Object.Instantiate(beacon, Camera.main.transform.forward*2, Quaternion.identity);
 			}
-		
+
 
 
 
@@ -170,5 +170,5 @@ public class PlayerManager : MonoBehaviour {
 		}
 		HandleBattery();
 		HandleOxygen();
-	}	
+	}
 }

@@ -93,7 +93,9 @@ public class MonsterAI : MonoBehaviour {
 		health = 100;
 	}
 
-	// Update is called once per frame
+	/**
+	 * Controls how the Monster behaves in the gameworld.
+	 */
 	void Update () {
 		if (health < 100 && !chasing) {
 			chasing = true;
@@ -162,10 +164,17 @@ public class MonsterAI : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * Acquires a new location in the Maze for the Monster to attempt to walk to.
+	 * @return - The Vector3 corresponding to the new position.
+	 */
 	Vector3 GetTarget(){
 		return new Vector3 (Random.Range (0, GridCreator.dimensions), 0, Random.Range (0, GridCreator.dimensions));
 	}
 
+	/**
+	 * Decides whether or not the Monster should try to path to a new location.
+	 */
 	void NewTarget(){
 		int choice = Random.Range (0, 3);
 		switch (choice) {
@@ -181,6 +190,11 @@ public class MonsterAI : MonoBehaviour {
 		}
 	}
 
+	/**
+	 * Damages the monster, and replaces it with a ragdoll if the damage reduces its health to zero or less.
+	 * @damage - the damage dealth by the incoming attack.
+	 * @return - returns nothing.
+	 */
 	public void damage(int damage) {
 		health -= damage;
 		if (health <= 0) {

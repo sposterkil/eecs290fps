@@ -14,6 +14,7 @@ using System.Collections.Generic;
  */
 public class GridCreator : MonoBehaviour {
 
+	// textures for the maze itself
 	public Material floorTexture;
 	public Material wallTexture;
 	public Material endTexture;
@@ -26,6 +27,7 @@ public class GridCreator : MonoBehaviour {
 	public Transform end;
 	public Transform player;
 
+	// prefabs for the pickups
 	public Transform AmmoPickup;
 	public Transform BatteryPickup;
 	public Transform HPPickup;
@@ -33,10 +35,12 @@ public class GridCreator : MonoBehaviour {
 
 	public static float dimensions;
 
+	// Monster prefabs
 	public Transform MonsterPrefab;
 	public int Monsters = 0;
 	public int MonstersSpawned = 0;
 
+	// holders for the walls that surround the maze and keep the player in
 	private Transform wall1;
 	private Transform wall2;
 	private Transform wall3;
@@ -261,7 +265,7 @@ public class GridCreator : MonoBehaviour {
 	void SpawnPickups(Transform cell){
 		if (Random.Range(0, 100) <= 15){
 			Transform pickup = null;
-			switch(Random.Range(0, 3)){
+			switch(Random.Range(0, 4)){
 				case 0:
 					pickup = Instantiate(AmmoPickup, cell.localPosition + Vector3.up, Quaternion.identity) as Transform;
 					break;
@@ -326,13 +330,13 @@ public class GridCreator : MonoBehaviour {
 				for (int i = 0; i < transform.childCount; i++) {
 					Destroy(transform.GetChild(i).gameObject);
 				}
-				// ...Remove all the pickups
-				foreach (Transform pickup in allPickups) {
+				// ...Remove all the pickups [Broken]
+/**				foreach (Transform pickup in allPickups) {
 					if (pickup.gameObject != null){
 						Destroy(pickup.gameObject);
 					}
 				}
-				allPickups.Clear();
+*/				allPickups.Clear();
 				// And restart the maze
 				player.localPosition = new Vector3(0f, 5f, 0f);
 				Size.Set(Size.x + 5f, Size.y, Size.z + 5f);

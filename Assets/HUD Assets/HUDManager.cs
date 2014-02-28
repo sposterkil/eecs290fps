@@ -15,6 +15,8 @@ public class HUDManager : MonoBehaviour {
 		instance = this;
 		GameEventManager.GameStart += GameStart;
 		GameEventManager.GameOver += GameOver;
+
+		// set the screen texts for  initial title and instructions
 		gameOverText.enabled = false;
 		healthText.enabled = false;
 		ammoText.enabled = false;
@@ -38,6 +40,8 @@ public class HUDManager : MonoBehaviour {
 	 * Starts the game, turns off the start menu turns on the hud
 	 */
 	private void GameStart () {
+
+		// set the HUD for gameplay
 		gameOverText.enabled = false;
 		instructionText.enabled = false;
 		titleText.enabled = false;
@@ -60,6 +64,8 @@ public class HUDManager : MonoBehaviour {
 	 * This triggers the hud to display game over
 	 */
 	private void GameOver () {
+
+		// disable HUD and set the game to end message
 		gameOverText.enabled = true;
 		instructionText.enabled = true;
 		enabled = true;

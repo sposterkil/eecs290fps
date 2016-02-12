@@ -3,7 +3,7 @@ eecs290fps
 
 FPS Project for EECS290
 
-Team #3 Maze Project ReadMe
+Team #3 Maze Project ReadMe   
 Team Members:  
 Atesoglu, Alan Kaan  
 Grant, Callum Hernit  
